@@ -1,0 +1,27 @@
+*.rbc
+capybara-*.html
+.rspec
+/log
+/tmp
+/db/*.sqlite3
+/public/system
+/public/uploads
+/coverage/
+/spec/tmp
+**.orig
+rerun.txt
+pickle-email-*.html
+# Ignore application configuration
+/config/initializers/secret_token.rb
+/config/secrets.yml
+/config/database.yml
+/config/admin.yml
+
+/config/config.yml
+## Environment normalisation:
+/.bundle
+/vendor/bundle
+
+Gemfile.lock
+# Ignore application configuration
+/config/application.yml
