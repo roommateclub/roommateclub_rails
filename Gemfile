@@ -17,7 +17,28 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # User authentication
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'rolify'
+gem 'cancancan'
 
+# images
+gem 'mini_magick'
+gem 'carrierwave'
+
+# form
+gem 'simple_form'
+
+# UI
+gem 'bootstrap'
+gem 'bootstrap-material-design'
+gem 'bootstrap-material-design'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
+
+
+# others
+gem 'seo_helper'
+gem 'high_voltage'
 
 
 # Use ActiveModel has_secure_password
