@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: profiles
+#
+#  id         :integer          not null, primary key
+#  nickname   :string(255)
+#  gender     :integer
+#  birthdate  :datetime
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nickname: MyString
+  gender: 1
+  birthdate: 2015-01-17 19:27:34
+  user_id: 1
+
+two:
+  nickname: MyString
+  gender: 1
+  birthdate: 2015-01-17 19:27:34
+  user_id: 1
