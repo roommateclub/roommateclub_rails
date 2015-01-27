@@ -31,7 +31,6 @@ gem 'simple_form'
 
 # UI
 gem 'bootstrap-sass'
-gem 'bootstrap-material-design'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 
 
