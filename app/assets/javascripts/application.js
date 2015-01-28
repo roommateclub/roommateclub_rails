@@ -14,4 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require_tree
+//= require custom.js
+//= require jquery.hoverdir.js
+//= require jquery.isotope.min.js
+//= require jquery.prettyPhoto.js
+//= require profiles.coffee
+//= require retina-1.1.0.js
