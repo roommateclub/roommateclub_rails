@@ -1,12 +1,7 @@
-class ProfilesController < ApplicationController
+class User::ProfilesController < User::BaseController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
-
-  def index
-    @profiles = Profile.all
-    respond_with(@profiles)
-  end
 
   def show
     respond_with(@profile)
@@ -38,7 +33,7 @@ class ProfilesController < ApplicationController
 
   private
     def set_profile
-      @profile = Profile.find(params[:id])
+      @profile = current_user.profile
     end
 
     def profile_params

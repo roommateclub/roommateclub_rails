@@ -25,4 +25,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
 
   has_one :profile
+
+  after_create :build_profile
+
+  private
+  def build_profile
+    create_profile!
+  end
 end

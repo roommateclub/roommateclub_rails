@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117112733) do
+ActiveRecord::Schema.define(version: 20150131112407) do
+
+  create_table "apartments", force: :cascade do |t|
+    t.integer  "city_id",            limit: 4
+    t.integer  "district_id",        limit: 4
+    t.integer  "owner_id",           limit: 4
+    t.text     "discription",        limit: 65535
+    t.integer  "personal_amount",    limit: 4
+    t.integer  "public_room_amount", limit: 4
+    t.integer  "balcony_amount",     limit: 4
+    t.boolean  "kitchen",            limit: 1
+    t.integer  "type",               limit: 4
+    t.string   "address_details",    limit: 255
+    t.float    "area_size",          limit: 24
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "apartments", ["city_id"], name: "index_apartments_on_city_id", using: :btree
+  add_index "apartments", ["district_id"], name: "index_apartments_on_district_id", using: :btree
+  add_index "apartments", ["owner_id"], name: "index_apartments_on_owner_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.string   "nickname",   limit: 255

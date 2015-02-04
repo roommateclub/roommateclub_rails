@@ -1,0 +1,45 @@
+# == Schema Information
+#
+# Table name: apartments
+#
+#  id                 :integer          not null, primary key
+#  city_id            :integer
+#  district_id        :integer
+#  owner_id           :integer
+#  discription        :text(65535)
+#  personal_amount    :integer
+#  public_room_amount :integer
+#  balcony_amount     :integer
+#  kitchen            :boolean
+#  type               :integer
+#  address_details    :string(255)
+#  area_size          :float(24)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city_id: 1
+  district_id: 1
+  owner_id: 1
+  discription: MyText
+  personal_amount: 1
+  public_room_amount: 1
+  balcony_amount: 1
+  kitchen: false
+  type: 1
+  address_details: MyString
+
+two:
+  city_id: 1
+  district_id: 1
+  owner_id: 1
+  discription: MyText
+  personal_amount: 1
+  public_room_amount: 1
+  balcony_amount: 1
+  kitchen: false
+  type: 1
+  address_details: MyString
