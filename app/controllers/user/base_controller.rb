@@ -1,7 +1,10 @@
 class User::BaseController < ApplicationController
   before_action :is_user
-  def dashboard
+  layout 'user_dashboard'
+  def index
   end
+
+  private
 
   def is_user
     unless current_user.present?
