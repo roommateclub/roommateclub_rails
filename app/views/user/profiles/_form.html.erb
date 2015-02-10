@@ -1,11 +1,17 @@
-<%= simple_form_for(@profile, url: user_profile_path, method: :PUT) do |f| %>
+<%= simple_form_for(@profile, url: user_profile_path) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :nickname %>
-    <%= f.input :gender %>
+    <%= f.input :gender, 
+                label: "性別", 
+                as: :radio_buttons, 
+                collection: [[:male, "男生"], [:female, "女生"]], 
+                label_method: :last,
+                value_method: :first,
+                item_wrapper_class: 'radio-inline radio-vertical-align', 
+                required: true %>
     <%= f.input :birthdate %>
-    <%= f.input :user_id %>
   </div>
 
   <div class="form-actions">

@@ -14,4 +14,6 @@
 class Profile < ActiveRecord::Base
   enum gender: [:male, :female]
   belongs_to :user
+
+  validates_presence_of :gender
 end

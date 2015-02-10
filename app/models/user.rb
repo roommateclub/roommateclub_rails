@@ -26,10 +26,8 @@ class User < ActiveRecord::Base
 
   has_one :profile
 
-  after_create :build_profile
+  validates_presence_of :email, :username, :password, :password_confirmation
 
-  private
-  def build_profile
-    create_profile!
-  end
+  attr_accessor :password_confirmation
+
 end

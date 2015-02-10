@@ -8,7 +8,7 @@ class User::ProfilesController < User::BaseController
   end
 
   def new
-    @profile = Profile.new
+    @profile = current_user.build_profile
     respond_with(@profile)
   end
 
@@ -16,14 +16,16 @@ class User::ProfilesController < User::BaseController
   end
 
   def create
-    @profile = Profile.new(profile_params)
+    @profile = current_user.build_profile(profile_params)
     @profile.save
-    respond_with(@profile)
+    respond_with(@profile, location: user_dashboard_path)
+    # flash[:notice] "歡迎"
   end
 
   def update
     @profile.update(profile_params)
-    respond_with(@profile, location: user_profile_path)
+    respond_with(@profile, location: user_dashboard_path)
+    # flash[:notice] "修改成功"
   end
 
   def destroy
@@ -37,6 +39,6 @@ class User::ProfilesController < User::BaseController
   end
 
   def profile_params
-    params.require(:profile).permit(:nickname, :gender, :birthdate, :user_id)
+    params.require(:profile).permit(:nickname, :gender, :birthdate)
   end
 end
