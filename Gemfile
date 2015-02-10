@@ -31,7 +31,8 @@ gem 'simple_form'
 
 # UI
 gem 'bootstrap-sass'
-gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
 
 # others

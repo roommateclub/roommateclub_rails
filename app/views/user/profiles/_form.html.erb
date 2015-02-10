@@ -11,10 +11,21 @@
                 value_method: :first,
                 item_wrapper_class: 'radio-inline radio-vertical-align', 
                 required: true %>
-    <%= f.input :birthdate %>
+    <%= f.input :birthdate, as: :date_picker %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+<% end %>
+<%= content_for :javascripts do %>
+  <script>
+  $(document).on('ready page:load', function () {
+    $('#profile_birthdate').datetimepicker({
+      format: "DD/MM/YYYY"
+    });
+    // Actions to do
+  });
+  </script>
+
 <% end %>
