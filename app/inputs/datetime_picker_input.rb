@@ -5,7 +5,7 @@ class DatetimePickerInput < SimpleForm::Inputs::StringInput
     input_html_options[:value] ||= I18n.localize(value.to_date, :format => display_pattern) if value.present?
 
     input_html_options[:type] = 'text'
-    picker_pettern = I18n.t('datepicker.pformat', :default => 'DD-MM-YYYY') + '   ' + I18n.t('timepicker.pformat', :default => 'hh:mm A')
+    picker_pettern = I18n.t('datepicker.pformat', :default => 'YYYY/MM/DD') + '   ' + I18n.t('timepicker.pformat', :default => 'hh:mm A')
     input_html_options[:data] ||= {}
     input_html_options[:data].merge!({ format: picker_pettern, language: I18n.locale.to_s,
                                        date_weekstart: I18n.t('datepicker.weekstart', :default => 0) })
