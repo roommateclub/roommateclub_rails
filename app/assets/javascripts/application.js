@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require moment
+//= require bootstrap-datetimepicker
 //= require custom.js
 //= require jquery.hoverdir.js
 //= require jquery.isotope.min.js

@@ -1,14 +1,29 @@
-<%= simple_form_for(@profile, url: user_profile_path, method: :PUT) do |f| %>
+<%= simple_form_for(@profile, url: user_profile_path) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :nickname %>
-    <%= f.input :gender %>
-    <%= f.input :birthdate %>
-    <%= f.input :user_id %>
+    <%= f.input :gender, 
+                label: "性別", 
+                as: :radio_buttons, 
+                collection: [[:male, "男生"], [:female, "女生"]], 
+                label_method: :last,
+                value_method: :first,
+                item_wrapper_class: 'radio-inline radio-vertical-align', 
+                required: true %>
+    <%= f.input :birthdate, as: :date_picker %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+<% end %>
+<%= content_for :javascripts do %>
+<script>
+$(document).on('page:load', function() {
+  $('#profile_birthdate').datetimepicker({
+    format: "YYYY/MM/DD"
+  });
+});
+</script>
 <% end %>
