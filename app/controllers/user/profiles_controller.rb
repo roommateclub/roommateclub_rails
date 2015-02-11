@@ -23,7 +23,7 @@ class User::ProfilesController < User::BaseController
 
   def update
     @profile.update(profile_params)
-    respond_with(@profile)
+    respond_with(@profile, location: user_profile_path)
   end
 
   def destroy
@@ -32,11 +32,11 @@ class User::ProfilesController < User::BaseController
   end
 
   private
-    def set_profile
-      @profile = current_user.profile
-    end
+  def set_profile
+    @profile = current_user.profile
+  end
 
-    def profile_params
-      params.require(:profile).permit(:nickname, :gender, :birthdate, :user_id)
-    end
+  def profile_params
+    params.require(:profile).permit(:nickname, :gender, :birthdate, :user_id)
+  end
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   namespace :user, path: "/dashboard" do
-    get 'base/dashboard', path: "", as: :dashboard
+    get 'base/index', path: "", as: :dashboard
     resource :profile, only: [:show, :edit, :update]
     resources :apartments
   end
