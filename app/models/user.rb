@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
 
   has_one :profile
+  has_many :apartments, foreign_key: :landlord_id
+  has_many :rent_cases, foreign_key: :landlord_id
 
   validates_presence_of :email, :username, :password, :password_confirmation
 

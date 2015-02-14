@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'base/index', path: "", as: :dashboard
     resource :profile, except: [:destroy]
     resources :apartments
+    resources :rent_cases
   end
 
   get 'apartments/index', path: 'apartments', as: 'apartments'

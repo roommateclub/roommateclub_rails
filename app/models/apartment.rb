@@ -19,8 +19,8 @@
 #
 
 class Apartment < ActiveRecord::Base
-  has_many :cases
-  belongs_to :owner, class_name: "User"
+  has_many :rent_cases
+  belongs_to :landlord, class_name: "User"
   belongs_to :city
   belongs_to :district
   

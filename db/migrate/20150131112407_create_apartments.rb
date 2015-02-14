@@ -3,7 +3,7 @@ class CreateApartments < ActiveRecord::Migration
     create_table :apartments do |t|
       t.integer :city_id
       t.integer :district_id
-      t.integer :owner_id
+      t.integer :landlord_id
       t.text :discription
       t.integer :personal_amount
       t.integer :public_room_amount
@@ -17,6 +17,6 @@ class CreateApartments < ActiveRecord::Migration
     end
     add_index :apartments, :city_id
     add_index :apartments, :district_id
-    add_index :apartments, :owner_id
+    add_index :apartments, :landlord_id
   end
 end
