@@ -1,2 +1,25 @@
-<h1>User::Apartments#index</h1>
-<p>Find me in app/views/user/apartments/index.html.erb</p>
+<h1>公寓列表</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>公寓名稱</th>
+      <th>公寓敘述</th>
+      <th>公寓狀態</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @apartments.each do |apartment| %>
+  <tr>
+    <td>
+      <%= link_to(truncate(apartment.discription), user_apartment_path(apartment)) %>
+    </td>
+    <td>#</td>
+    <td>待開發</td>
+    <!-- 依照公寓狀態改變按鈕 -->
+    <td><%= link_to("出租公寓", new_user_apartment_rent_case_path(apartment)) %></td>
+
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to("登陸新公寓", new_user_apartment_path, class: "btn btn-info") %>

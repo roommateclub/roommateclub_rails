@@ -1,2 +1,12 @@
-<h1>User::Apartments#new</h1>
-<p>Find me in app/views/user/apartments/new.html.erb</p>
+<h1>登陸公寓</h1>
+
+<%= simple_form_for(@apartment, url: user_apartments_path) do |f| %>
+  <%= f.input :discription, label: "公寓介紹" %>
+  <%= f.input :is_landlord, 
+              label: "身份",
+              as: :radio_buttons, 
+              collection: [["我是房東", true], ["我是房客分租", false]] %>
+  <%= f.button :submit, "登陸" %>
+  
+<% end %>
+  

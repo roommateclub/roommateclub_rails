@@ -1,5 +1,6 @@
 class User::RentCasesController < User::BaseController
   before_action :set_rent_case, only: [:show, :edit, :update, :destroy]
+  before_action :set_apartment, except: [:index]
 
   respond_to :html
 
@@ -13,17 +14,20 @@ class User::RentCasesController < User::BaseController
   end
 
   def new
-    @rent_case = RentCase.new
+    @rent_case = @apartment.rent_cases.build
     respond_with(@rent_case)
   end
 
   def create
-    @rent_case = current_user.rent_cases.build(rent_case_params)
-    @rent_case.save
-    respond_with(@rent_case, location: user_rent_case_path(@rent_case))
+    @rent_case = @apartment.rent_cases.build(rent_case_params)
+    if @rent_case.save
+      @rent_case.update(landlord: current_user)
+      respond_with(@rent_case, location: user_apartment_path(@apartment))
+    end 
   end
 
   def edit
+    @apartments = current_user.apartments
   end
 
   def update
@@ -39,6 +43,10 @@ class User::RentCasesController < User::BaseController
   private
   def set_rent_case
     @rent_case = RentCase.find(params[:id])
+  end
+
+  def set_apartment
+    @apartment = Apartment.find(params[:apartment_id])
   end
 
   def rent_case_params

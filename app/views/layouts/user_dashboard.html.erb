@@ -23,13 +23,16 @@
       <ul class="nav navbar-nav">
         <li><%= link_to("個人資料", edit_user_profile_path) %></li>
         <li><%= link_to("我的公寓列表", user_apartments_path) %></li>
-        <li><%= link_to("我的案件列表", user_rent_cases_path) %></li>
+        <!-- <li><%#= link_to("我的案件列表", user_rent_cases_path) %></li> -->
       </ul>
     </div><!--/.nav-collapse -->
   </div>
 </div>
-
-<%= yield %>
+<div class="container-fluid">
+  <div class="col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+  <%= yield %>
+  </div>
+</div>
 
 </body>
 </html>

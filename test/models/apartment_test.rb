@@ -5,7 +5,7 @@
 #  id                 :integer          not null, primary key
 #  city_id            :integer
 #  district_id        :integer
-#  owner_id           :integer
+#  landlord_id        :integer
 #  discription        :text(65535)
 #  personal_amount    :integer
 #  public_room_amount :integer

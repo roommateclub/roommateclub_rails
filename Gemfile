@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 gem 'mysql2'
@@ -22,6 +21,8 @@ gem 'omniauth-facebook'
 gem 'rolify'
 gem 'cancancan'
 
+# State Machine
+gem 'workflow'
 # images
 gem 'mini_magick'
 gem 'carrierwave'
