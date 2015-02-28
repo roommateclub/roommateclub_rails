@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
 
   has_one :profile
   has_many :apartments, foreign_key: :landlord_id
-  has_many :rent_cases, foreign_key: :landlord_id
+  has_many :tenant_rent_cases, foreign_key: :owner_id
+  has_many :landlord_rent_cases, foreign_key: :owner_id
 
   validates_presence_of :email, :username, :password, :password_confirmation
 

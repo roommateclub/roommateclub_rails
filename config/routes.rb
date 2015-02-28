@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   namespace :user, path: "/dashboard" do
     get 'base/index', path: "", as: :dashboard
     resource :profile, except: [:destroy]
-    resources :apartments do
-      resources :rent_cases
-    end
+    resources :tenant_rent_cases
+    resources :landlord_rent_cases
+    resources :apartments
     get 'rent_cases' => 'rent_cases#index'
   end
 

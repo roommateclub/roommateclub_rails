@@ -11,6 +11,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  state        :string(255)
+#  type         :string(25)
 #
 
 class RentCase < ActiveRecord::Base
@@ -18,7 +19,9 @@ class RentCase < ActiveRecord::Base
   # include Workflow
 
   belongs_to :apartment
-  belongs_to :landlord, class_name: :User
+  belongs_to :owner, class_name: :User
+
+  accepts_nested_attributes_for :apartment
   
   # workflow do
   # end

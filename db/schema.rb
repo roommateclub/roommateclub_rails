@@ -46,17 +46,18 @@ ActiveRecord::Schema.define(version: 20150219080737) do
 
   create_table "rent_cases", force: :cascade do |t|
     t.integer  "apartment_id", limit: 4
-    t.integer  "landlord_id",  limit: 4
+    t.integer  "owner_id",     limit: 4
     t.integer  "price",        limit: 4
     t.datetime "move_in_date"
     t.text     "discription",  limit: 65535
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "state",        limit: 255
+    t.string   "type",         limit: 25
   end
 
   add_index "rent_cases", ["apartment_id"], name: "index_rent_cases_on_apartment_id", using: :btree
-  add_index "rent_cases", ["landlord_id"], name: "index_rent_cases_on_landlord_id", using: :btree
+  add_index "rent_cases", ["owner_id"], name: "index_rent_cases_on_owner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

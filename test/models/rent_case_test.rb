@@ -11,6 +11,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  state        :string(255)
+#  type         :string(25)
 #
 
 require 'test_helper'

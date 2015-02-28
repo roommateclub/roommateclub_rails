@@ -1,0 +1,8 @@
+<h1>Editing Rent Case</h1>
+
+<%= simple_form_for(@rent_case, url: user_rent_case_path(@rent_case)) do |f| %>
+  <%= render 'form', f: f %>
+<% end %>
+
+<%= link_to 'Show', user_rent_case_path %> |
+<%= link_to 'Back', user_rent_cases_path %>
