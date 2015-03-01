@@ -16,7 +16,6 @@ class User::TenantRentCasesController < User::BaseController
   def new
     @tenant_rent_case = current_user.tenant_rent_cases.build
     @apartment = @tenant_rent_case.build_apartment
-    respond_with(@tenant_rent_case)
   end
 
   def create

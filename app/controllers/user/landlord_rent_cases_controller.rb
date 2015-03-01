@@ -15,15 +15,19 @@ class User::LandlordRentCasesController < User::BaseController
 
   def new
     @landlord_rent_case = current_user.landlord_rent_cases.build
-    @apartment = @landlord_rent_case.build_apartment
-    respond_with(@landlord_rent_case)
+    if params[:apartment_id].present? 
+      @apartment = Apartment.find(params[:apartment_id])
+      @update_apartment = true
+    else
+      @apartment = @landlord_rent_case.build_apartment
+    end
   end
 
   def create
     @landlord_rent_case = current_user.landlord_rent_cases.build(landlord_rent_case_params)
     if @landlord_rent_case.save
-      @landlord_rent_case.update(owner: current_user)
-      respond_with(@landlord_rent_case, location: user_apartment_path(@landlord_rent_case.apartment))
+      @landlord_rent_case.update(apartment_id: params[:apartment_id]) if params[:apartment_id].present?
+      respond_with(@landlord_rent_case, location: user_apartment_path(@landlord_rent_case.apartment.id))
     end 
   end
 
@@ -48,6 +52,10 @@ class User::LandlordRentCasesController < User::BaseController
 
   # def set_apartment
   #   @apartment = Apartment.find(params[:apartment_id])
+  # end
+
+  # def create_with_current_apartment
+  #   landlord_rent_case = current_user.build()
   # end
 
   def landlord_rent_case_params

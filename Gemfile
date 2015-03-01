@@ -47,6 +47,8 @@ gem 'capistrano-rails', group: :development
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry'
+  gem 'pry-remote'
   gem 'annotate'
   gem 'bullet'
   # Access an IRB console on exception pages or by using <%= console %> in views

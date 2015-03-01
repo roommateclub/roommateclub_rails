@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resource :profile, except: [:destroy]
     resources :tenant_rent_cases
     resources :landlord_rent_cases
-    resources :apartments
+    resources :apartments do
+      resources :landlord_rent_cases
+    end
     get 'rent_cases' => 'rent_cases#index'
   end
 

@@ -4,18 +4,18 @@ class User::ApartmentsController < User::BaseController
   respond_to :html
 
   def index
-    @apartments = current_user.apartments
+    @apartments = current_user.apartments.includes(:rent_cases)
   end
 
   def show
   end
 
   def new
-    @apartment = Apartment.new
+    @apartment = current_user.apartments.new
   end
 
   def create
-    @apartment = Apartment.register(apartment_params, current_user.id)
+    @apartment = current_user.apartments.register(apartment_params, current_user.id)
     @apartment.save
     respond_with(@apartment, location: user_apartment_path(@apartment))
   end

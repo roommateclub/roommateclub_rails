@@ -1,7 +1,14 @@
 <h1>New Rent Case</h1>
-
-<%= simple_form_for(@rent_case, url: user_rent_cases_path) do |f| %>
-  <%= render 'form', f: f, apartment: @apartment %>
+<% if @update_apartment == true %>
+  <%= @apartment.discription %>
+  <%= simple_form_for(@landlord_rent_case, url: user_apartment_landlord_rent_cases_path) do |f| %>
+    <%= render 'form', f: f %>
+  <% end %>
+<% else %>
+  <%= simple_form_for(@landlord_rent_case, url: user_landlord_rent_cases_path) do |f| %>
+    <%= render 'form', f: f, apartment: @apartment %>
+  <% end %>
 <% end %>
+
 
 <%= link_to 'Back', user_rent_cases_path %>

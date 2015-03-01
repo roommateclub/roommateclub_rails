@@ -1,4 +1,9 @@
 <p><%= @apartment.discription %></p>
+<p>
+  <% @apartment.rent_cases.each do |rent_case| %>
+    <%= rent_case.price %>
+  <% end %>
+</p>
 
 <%= link_to("返回公寓列表", user_apartments_path) %>
 
