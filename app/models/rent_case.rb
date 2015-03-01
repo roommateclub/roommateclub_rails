@@ -16,14 +16,22 @@
 
 class RentCase < ActiveRecord::Base
 
-  # include Workflow
+  include Workflow
 
   belongs_to :apartment
   belongs_to :owner, class_name: :User
 
   accepts_nested_attributes_for :apartment
   
-  # workflow do
+  workflow_column :state
+  workflow do
+    state :active
+    state :rented
+    state :expired
+  end
+
+  # def rent
+  #   puts "cool"
   # end
 
 

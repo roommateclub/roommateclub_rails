@@ -13,8 +13,8 @@
     <td>
       <%= link_to(truncate(apartment.discription), user_apartment_path(apartment)) %>
     </td>
-    <td>#</td>
-    <td>待開發</td>
+    <td><%= apartment.discription %></td>
+    <td><%= apartment.rent_cases.last.state %></td>
     <!-- 依照公寓狀態改變按鈕 -->
     <td><%= link_to("出租公寓", new_user_apartment_landlord_rent_case_path(apartment)) %></td>
 
