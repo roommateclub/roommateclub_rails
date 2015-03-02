@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219080737) do
+ActiveRecord::Schema.define(version: 20150302063320) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "city_id",            limit: 4
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20150219080737) do
   add_index "apartments", ["city_id"], name: "index_apartments_on_city_id", using: :btree
   add_index "apartments", ["district_id"], name: "index_apartments_on_district_id", using: :btree
   add_index "apartments", ["landlord_id"], name: "index_apartments_on_landlord_id", using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.integer  "rent_case_id", limit: 4
+    t.integer  "organizer_id", limit: 4
+    t.integer  "group_size",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "groups", ["organizer_id"], name: "index_groups_on_organizer_id", using: :btree
+  add_index "groups", ["rent_case_id"], name: "index_groups_on_rent_case_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.string   "nickname",   limit: 255
@@ -58,6 +69,17 @@ ActiveRecord::Schema.define(version: 20150219080737) do
 
   add_index "rent_cases", ["apartment_id"], name: "index_rent_cases_on_apartment_id", using: :btree
   add_index "rent_cases", ["owner_id"], name: "index_rent_cases_on_owner_id", using: :btree
+
+  create_table "user_group_ships", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "group_id",   limit: 4
+    t.integer  "status",     limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "user_group_ships", ["group_id"], name: "index_user_group_ships_on_group_id", using: :btree
+  add_index "user_group_ships", ["user_id"], name: "index_user_group_ships_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

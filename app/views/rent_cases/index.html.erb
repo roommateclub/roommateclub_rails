@@ -1,3 +1,15 @@
-<% @rent_cases.each do |rent_case| %>
-  <%= rent_case.price %>
-<% end %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>月租</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @rent_cases.each do |rent_case| %>
+    <tr>
+      <td><%= rent_case.price %></td>
+    </tr>
+  <% end %>  
+  </tbody>
+
+</table>

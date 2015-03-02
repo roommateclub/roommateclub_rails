@@ -4,7 +4,7 @@
 #
 #  id           :integer          not null, primary key
 #  apartment_id :integer
-#  landlord_id  :integer
+#  owner_id     :integer
 #  price        :integer
 #  move_in_date :datetime
 #  discription  :text(65535)

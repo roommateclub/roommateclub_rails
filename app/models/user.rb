@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   has_many :apartments, foreign_key: :landlord_id
   has_many :tenant_rent_cases, foreign_key: :owner_id
   has_many :landlord_rent_cases, foreign_key: :owner_id
+  has_many :user_group_ships
+  has_many :groups, through: :user_group_ships
 
   validates_presence_of :email, :username, :password, :password_confirmation
 
