@@ -3,6 +3,11 @@
 <%= f.simple_fields_for :apartment do |a| %>
   <%= a.input :discription %>
 <% end %>
+
+<%= f.simple_fields_for :groups do |g| %>
+  <%= g.input :group_size %>
+  <%= g.hidden_field :organizer_id, value: current_user.id %>
+<% end %>
   
 <div class="form-inputs">
   <%= f.input :price %>

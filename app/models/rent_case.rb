@@ -20,8 +20,10 @@ class RentCase < ActiveRecord::Base
 
   belongs_to :apartment
   belongs_to :owner, class_name: :User
+  has_many :groups
 
-  accepts_nested_attributes_for :apartment
+  accepts_nested_attributes_for :apartment, :groups
+
   
   workflow_column :state
   workflow do

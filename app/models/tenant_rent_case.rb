@@ -15,5 +15,10 @@
 #
 
 class TenantRentCase < RentCase
+  # after_create :create_unique_group
 
+
+  # def create_unique_group
+  #   self.groups.create(organizer: self.owner)
+  # end
 end
