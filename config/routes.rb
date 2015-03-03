@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
   resources :rent_cases, only: [:index, :show] do
-    resources :groups
+    resources :groups, shallow: true
   end
-  resources :groups, only: [:index, :show]
+
+  resources :groups, only: [:index, :show] do
+    post :join_group, on: :member, as: :join
+  end
 
   namespace :user, path: "/dashboard" do
     get 'base/index', path: "", as: :dashboard

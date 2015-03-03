@@ -13,4 +13,6 @@
 class UserGroupShip < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
+
+  enum status:[:pending, :validated]
 end

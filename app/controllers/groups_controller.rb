@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_action :set_group, only: [:show, :join_group]
   respond_to :html
 
   def index
@@ -6,6 +7,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @user_group_ship = @group.user_group_ships.build if @group.current_user_not_joining(current_user)
   end
 
   def new
@@ -17,7 +19,7 @@ class GroupsController < ApplicationController
     @rent_case = LandlordRentCase.find(params[:rent_case_id])
     @group = @rent_case.groups.build
     @group.save
-    respond_with(@group, location: rent_case_group_path(rent_case_id: @rent_case, id: @group))
+    respond_with(@group)
   end
 
   def edit
@@ -26,7 +28,17 @@ class GroupsController < ApplicationController
   def destroy
   end
 
+  def join_group
+    @user_group_ship = @group.user_group_ships.build(user: current_user)
+    @user_group_ship.save
+    respond_with(@group)
+  end
+
   private
+
+  def set_group
+    @group = Group.find(params[:id])
+  end
 
   def group_params
     params[:group].permit!
