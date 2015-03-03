@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>人數</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @groups.each do |group| %>
+    <tr>
+      <td><%= link_to(group.name, user_group_path(group)) %></td>
+      <td><%= truncate(group.discription) %></td>
+      <td><%= group.group_size %></td>
+    </tr> 
+  <% end %>
+  </tbody>
+</table>

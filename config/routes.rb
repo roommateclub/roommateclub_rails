@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resource :profile, except: [:destroy]
     resources :tenant_rent_cases
     resources :landlord_rent_cases
+    resources :groups
     resources :apartments do
       resources :landlord_rent_cases
     end

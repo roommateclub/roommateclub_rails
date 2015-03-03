@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303090552) do
+ActiveRecord::Schema.define(version: 20150303112117) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "city_id",            limit: 4
@@ -37,8 +37,10 @@ ActiveRecord::Schema.define(version: 20150303090552) do
     t.integer  "rent_case_id", limit: 4
     t.integer  "organizer_id", limit: 4
     t.integer  "group_size",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "name",         limit: 255
+    t.text     "discription",  limit: 65535
   end
 
   add_index "groups", ["organizer_id"], name: "index_groups_on_organizer_id", using: :btree
