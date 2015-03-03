@@ -7,6 +7,7 @@ class RentCasesController < ApplicationController
   end
 
   def show
-    @rent_case = RentCase.find(params[:id]).includes(:apartment)
+    @rent_case = RentCase.find(params[:id])
+    @groups = @rent_case.groups
   end
 end

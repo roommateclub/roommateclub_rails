@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  
-  resources :rent_cases, only: [:index, :show]
+
+  resources :rent_cases, only: [:index, :show] do
+    resources :groups
+  end
+  resources :groups, only: [:index, :show]
 
   namespace :user, path: "/dashboard" do
     get 'base/index', path: "", as: :dashboard

@@ -1,2 +1,10 @@
-<h1>RentCases#show</h1>
-<p>Find me in app/views/rent_cases/show.html.erb</p>
+<%= @rent_case.price %>
+<% @groups.each do |group| %>
+  <%= group.group_size %>
+  <!-- 加入 Group -->
+<% end %>
+
+<% if @rent_case.type == "LandlordRentCase" %>
+<%= link_to("建立 Group", new_rent_case_group_path(@rent_case)) %>
+<% end %>
+  
