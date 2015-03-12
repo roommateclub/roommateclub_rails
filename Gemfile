@@ -23,6 +23,7 @@ gem 'cancancan'
 
 # State Machine
 gem 'workflow'
+
 # images
 gem 'mini_magick'
 gem 'carrierwave'
@@ -35,6 +36,8 @@ gem 'bootstrap-sass'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
+# Geology
+gem 'taiwan_city_dists_helper'
 
 # others
 gem 'seo_helper'
@@ -54,4 +57,3 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
-

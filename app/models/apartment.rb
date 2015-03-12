@@ -6,14 +6,14 @@
 #  city_id            :integer
 #  district_id        :integer
 #  landlord_id        :integer
-#  discription        :text(65535)
+#  discription        :text
 #  personal_amount    :integer
 #  public_room_amount :integer
 #  balcony_amount     :integer
 #  kitchen            :boolean
 #  type               :integer
-#  address_details    :string(255)
-#  area_size          :float(24)
+#  address_details    :string
+#  area_size          :float
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
@@ -22,7 +22,7 @@ class Apartment < ActiveRecord::Base
   has_many :rent_cases
   belongs_to :landlord, class_name: "User"
   belongs_to :city
-  belongs_to :district
+  belongs_to :dist
   
   enum type: [:stair, :elevator]
 

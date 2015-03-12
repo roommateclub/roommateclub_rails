@@ -22,3 +22,4 @@
 //= require jquery.prettyPhoto.js
 //= require profiles.coffee
 //= require retina-1.1.0.js
+//= require taiwan_city_dists_helper

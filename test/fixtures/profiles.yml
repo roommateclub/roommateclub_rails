@@ -3,7 +3,7 @@
 # Table name: profiles
 #
 #  id         :integer          not null, primary key
-#  nickname   :string(255)
+#  nickname   :string
 #  gender     :integer
 #  birthdate  :datetime
 #  user_id    :integer

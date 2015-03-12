@@ -8,6 +8,8 @@
 #  group_size   :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  name         :string
+#  discription  :text
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

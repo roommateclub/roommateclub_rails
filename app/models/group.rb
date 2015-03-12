@@ -8,6 +8,8 @@
 #  group_size   :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  name         :string
+#  discription  :text
 #
 
 class Group < ActiveRecord::Base

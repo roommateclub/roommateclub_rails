@@ -7,10 +7,10 @@
 #  owner_id     :integer
 #  price        :integer
 #  move_in_date :datetime
-#  discription  :text(65535)
+#  discription  :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  state        :string(255)
+#  state        :string
 #  type         :string(25)
 #
 
