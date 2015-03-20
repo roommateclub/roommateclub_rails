@@ -37,7 +37,6 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
 # Geology
-gem 'taiwan_city_dists_helper'
 
 # others
 gem 'seo_helper'

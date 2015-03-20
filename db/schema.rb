@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312142902) do
+ActiveRecord::Schema.define(version: 20150320105510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "city_id"
-    t.integer  "dist_id"
+    t.integer  "district_id"
     t.integer  "landlord_id"
     t.text     "discription"
     t.integer  "personal_amount"
@@ -33,21 +33,23 @@ ActiveRecord::Schema.define(version: 20150312142902) do
   end
 
   add_index "apartments", ["city_id"], name: "index_apartments_on_city_id", using: :btree
-  add_index "apartments", ["dist_id"], name: "index_apartments_on_dist_id", using: :btree
+  add_index "apartments", ["district_id"], name: "index_apartments_on_district_id", using: :btree
   add_index "apartments", ["landlord_id"], name: "index_apartments_on_landlord_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "dists", force: :cascade do |t|
+  create_table "districts", force: :cascade do |t|
     t.string   "name"
     t.integer  "city_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "districts", ["city_id"], name: "index_districts_on_city_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.integer  "rent_case_id"
