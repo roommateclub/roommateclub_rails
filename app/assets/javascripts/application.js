@@ -16,7 +16,6 @@
 //= require bootstrap-sprockets
 //= require nprogress
 //= require nprogress-turbolinks
-//= require select2
 //= require moment
 //= require bootstrap-datetimepicker
 //= require custom.js

@@ -32,7 +32,6 @@ gem 'carrierwave'
 
 # form
 gem 'simple_form'
-gem "select2-rails"
 
 # UI
 gem 'bootstrap-sass'

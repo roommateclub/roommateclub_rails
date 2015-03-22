@@ -7,7 +7,10 @@
               as: :radio_buttons, 
               collection: [["我是房東", true], ["我是房客分租", false]] %>
   <%= f.select :city_id, @cities, prompt: "請選擇縣市" %>
-  <select name="apartment[district_id]" id="apartment_district_id"></select>
+  <select name="apartment[district_id]" id="apartment_district_id">
+    <option value="default" disabled="disabled">請選擇區域</option>
+  </select>
+  <%= f.input :address_details, label: "街道" %>
   <%= f.button :submit, "登陸" %>
   
 <% end %>
