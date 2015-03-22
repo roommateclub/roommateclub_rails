@@ -6,7 +6,38 @@
               label: "身份",
               as: :radio_buttons, 
               collection: [["我是房東", true], ["我是房客分租", false]] %>
+  <%= f.select :city_id, @cities, prompt: "請選擇縣市" %>
+  <select name="apartment[district_id]" id="apartment_district_id"></select>
   <%= f.button :submit, "登陸" %>
   
 <% end %>
-  
+
+<script>
+  // Refactored this by moving them to coffee/reactjs
+  $('#apartment_city_id').on('change', function(e) {
+    $('#apartment_district_id').find('option').remove();
+    city_id = $('#apartment_city_id option:selected').val();
+    get_districts_in_city(city_id);
+  });
+  function get_districts_in_city(city_id){
+    $.ajax({
+      url: "<%= api_v1_locations_districts_index_path %>" + "?city_id=" + city_id,
+      format: "json",
+      success: function(data){
+        var i ;
+        var select = document.getElementById('apartment_district_id');
+        for(i in data){
+          option = document.createElement("option");
+          option.text = data[i].name;
+          option.value = data[i].id;
+          select.appendChild(option);
+        }
+      },
+      error: function(){
+        alert("沒有資料");
+      }
+    })
+  }
+
+  // api_v1_locations_districts_index_path
+</script>

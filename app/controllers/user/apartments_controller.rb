@@ -12,6 +12,7 @@ class User::ApartmentsController < User::BaseController
 
   def new
     @apartment = current_user.apartments.new
+    @cities = City.all.map{ |city| [city.name, city.id] }
   end
 
   def create
@@ -36,6 +37,6 @@ class User::ApartmentsController < User::BaseController
   end
 
   def apartment_params
-    params[:apartment].permit([:discription, :is_landlord])
+    params[:apartment].permit(:discription, :is_landlord, :city_id, :district_id)
   end
 end

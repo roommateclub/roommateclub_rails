@@ -1,6 +1,9 @@
+@import "select2.css";
 @import "bootstrap-sprockets";
 @import "bootstrap_custom";
 @import 'bootstrap-datetimepicker';
+@import 'nprogress.css';
+@import 'nprogress-bootstrap';
 @import "style.scss";
 
 .bootstrap-datetimepicker-widget{

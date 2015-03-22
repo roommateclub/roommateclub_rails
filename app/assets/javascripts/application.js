@@ -14,6 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require nprogress
+//= require nprogress-turbolinks
+//= require select2
 //= require moment
 //= require bootstrap-datetimepicker
 //= require custom.js
@@ -22,4 +25,3 @@
 //= require jquery.prettyPhoto.js
 //= require profiles.coffee
 //= require retina-1.1.0.js
-//= require taiwan_city_dists_helper

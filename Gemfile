@@ -9,9 +9,11 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
+# JS
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
+# gem 'react-rails'
+
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # User authentication
@@ -30,12 +32,17 @@ gem 'carrierwave'
 
 # form
 gem 'simple_form'
+gem "select2-rails"
 
 # UI
 gem 'bootstrap-sass'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
+gem 'nprogress-rails'
 
+
+# Api
+gem 'active_model_serializers'
 # Geology
 
 # others

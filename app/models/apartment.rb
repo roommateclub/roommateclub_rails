@@ -32,7 +32,9 @@ class Apartment < ActiveRecord::Base
     current_apartment = self.new(params)
     current_apartment.landlord_id = current_user_id if params[:is_landlord] == true
     return current_apartment
+    # Move this to service PORO
   end
+
   def register_apartment(is_landlord, option = {})
     landlord_id = option[:landlord_id]
   end

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+    namespace :v1 do
+      get 'locations/districts_index'
+    end
+  end
+
   resources :rent_cases, only: [:index, :show] do
     resources :groups, shallow: true
   end
