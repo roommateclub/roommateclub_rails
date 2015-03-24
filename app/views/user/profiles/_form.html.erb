@@ -18,12 +18,11 @@
     <%= f.button :submit %>
   </div>
 <% end %>
-<%= content_for :javascripts do %>
 <script>
-$(document).on('page:load', function() {
+$(document).on('page:change', function() {
+  // alert("wool");
   $('#profile_birthdate').datetimepicker({
     format: "YYYY/MM/DD"
   });
 });
 </script>
-<% end %>
