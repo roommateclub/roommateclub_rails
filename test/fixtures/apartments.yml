@@ -3,8 +3,6 @@
 # Table name: apartments
 #
 #  id                 :integer          not null, primary key
-#  city_id            :integer
-#  district_id        :integer
 #  landlord_id        :integer
 #  discription        :text
 #  personal_amount    :integer

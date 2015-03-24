@@ -10,5 +10,8 @@
 #
 
 class District < ActiveRecord::Base
+  has_many :addresses
+  has_many :apartments, through: :addresses
   belongs_to :city
+
 end

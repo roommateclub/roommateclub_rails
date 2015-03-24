@@ -10,4 +10,6 @@
 
 class City < ActiveRecord::Base
   has_many :districts
+  has_many :addresses, through: :districts
+  has_many :apartment, through: :addresses
 end

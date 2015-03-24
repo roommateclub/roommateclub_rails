@@ -11,14 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320105510) do
+ActiveRecord::Schema.define(version: 20150323111648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "apartments", force: :cascade do |t|
-    t.integer  "city_id"
+  create_table "addresses", force: :cascade do |t|
     t.integer  "district_id"
+    t.integer  "apartment_id"
+    t.string   "street"
+    t.string   "postcode"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "addresses", ["apartment_id"], name: "index_addresses_on_apartment_id", using: :btree
+  add_index "addresses", ["district_id"], name: "index_addresses_on_district_id", using: :btree
+
+  create_table "apartments", force: :cascade do |t|
     t.integer  "landlord_id"
     t.text     "discription"
     t.integer  "personal_amount"
@@ -32,8 +44,6 @@ ActiveRecord::Schema.define(version: 20150320105510) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "apartments", ["city_id"], name: "index_apartments_on_city_id", using: :btree
-  add_index "apartments", ["district_id"], name: "index_apartments_on_district_id", using: :btree
   add_index "apartments", ["landlord_id"], name: "index_apartments_on_landlord_id", using: :btree
 
   create_table "cities", force: :cascade do |t|

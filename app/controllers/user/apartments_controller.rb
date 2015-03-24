@@ -12,13 +12,17 @@ class User::ApartmentsController < User::BaseController
 
   def new
     @apartment = current_user.apartments.new
+    @address = @apartment.build_address
     @cities = City.all.map{ |city| [city.name, city.id] }
   end
 
   def create
-    @apartment = current_user.apartments.register(apartment_params, current_user.id)
-    @apartment.save
-    respond_with(@apartment, location: user_apartment_path(@apartment))
+    @apartment = current_user.apartments.build(apartment_params)
+    if @apartment.save
+      respond_with(@apartment, location: user_apartment_path(@apartment))
+    else
+      render :new
+    end
   end
 
   def edit
@@ -37,6 +41,7 @@ class User::ApartmentsController < User::BaseController
   end
 
   def apartment_params
-    params[:apartment].permit(:discription, :is_landlord, :city_id, :district_id, :address_detail)
+    params[:apartment].permit(:discription, :is_landlord,
+      address_attributes: [:city_id, :district_id, :street])
   end
 end

@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: addresses
+#
+#  id           :integer          not null, primary key
+#  district_id  :integer
+#  apartment_id :integer
+#  street       :string
+#  postcode     :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  district_id: 1
+  street: MyString
+  postcode: MyString
+
+two:
+  district_id: 1
+  street: MyString
+  postcode: MyString
