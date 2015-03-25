@@ -1,3 +1,14 @@
 <% @groups.each do |group| %>
-  <%= group.group_size %>
+<div class="media">
+  <div class="media-left">
+    <a href="#">
+      <img class="media-object" src="..." alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><%= link_to(group.name, group_path(group)) %></h4>
+    <h4><small><%= group.group_size %></small></h4>
+    <h6><small>張貼人: <%= group.organizer.username %></small></h6>
+  </div>
+</div>
 <% end %>

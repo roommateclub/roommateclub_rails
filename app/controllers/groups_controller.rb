@@ -3,11 +3,11 @@ class GroupsController < ApplicationController
   respond_to :html
 
   def index
-    @groups = Group.all
+    @groups = Group.all.includes(:rent_case)
   end
 
   def show
-    @user_group_ship = @group.user_group_ships.build if @group.current_user_not_joining(current_user)
+    @user_group_ship = @group.user_group_ships.build if @group.can_join?(current_user)
   end
 
   def new
@@ -26,12 +26,6 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-  end
-
-  def join_group
-    @user_group_ship = @group.user_group_ships.build(user: current_user)
-    @user_group_ship.save
-    respond_with(@group)
   end
 
   private

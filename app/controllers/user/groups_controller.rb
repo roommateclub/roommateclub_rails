@@ -1,5 +1,5 @@
 class User::GroupsController < User::BaseController
-  before_action :set_group
+  before_action :set_group, except:[:index]
   def index
     @groups = current_user.groups.includes(:users)
   end

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups, only: [:index, :show] do
-    post :join_group, on: :member, as: :join
+    post "user_group_ships/create", on: :member, as: :user_join
   end
 
   namespace :user, path: "/dashboard" do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323111648) do
+ActiveRecord::Schema.define(version: 20150325132041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,38 +62,38 @@ ActiveRecord::Schema.define(version: 20150323111648) do
   add_index "districts", ["city_id"], name: "index_districts_on_city_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.integer  "rent_case_id", limit: 4
-    t.integer  "organizer_id", limit: 4
-    t.integer  "group_size",   limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "name",         limit: 255
-    t.text     "discription",  limit: 65535
+    t.integer  "rent_case_id"
+    t.integer  "organizer_id"
+    t.integer  "group_size"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "name"
+    t.text     "discription"
   end
 
   add_index "groups", ["organizer_id"], name: "index_groups_on_organizer_id", using: :btree
   add_index "groups", ["rent_case_id"], name: "index_groups_on_rent_case_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
-    t.string   "nickname",   limit: 255
-    t.integer  "gender",     limit: 4
+    t.string   "nickname"
+    t.integer  "gender"
     t.datetime "birthdate"
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "rent_cases", force: :cascade do |t|
-    t.integer  "apartment_id", limit: 4
-    t.integer  "owner_id",     limit: 4
-    t.integer  "price",        limit: 4
+    t.integer  "apartment_id"
+    t.integer  "owner_id"
+    t.integer  "price"
     t.datetime "move_in_date"
-    t.text     "discription",  limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "state",        limit: 255
+    t.text     "discription"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "state"
     t.string   "type",         limit: 25
   end
 
@@ -101,28 +101,29 @@ ActiveRecord::Schema.define(version: 20150323111648) do
   add_index "rent_cases", ["owner_id"], name: "index_rent_cases_on_owner_id", using: :btree
 
   create_table "user_group_ships", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "group_id",   limit: 4
-    t.integer  "status",     limit: 4, default: 0
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.integer  "status",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.text     "message"
   end
 
   add_index "user_group_ships", ["group_id"], name: "index_user_group_ships_on_group_id", using: :btree
   add_index "user_group_ships", ["user_id"], name: "index_user_group_ships_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "username",               limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "username",               default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

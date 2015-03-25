@@ -18,7 +18,7 @@ class Group < ActiveRecord::Base
   belongs_to :rent_case
   belongs_to :organizer, class_name: :User
 
-  def current_user_not_joining(user)
-    true if user_group_ships.find_by(user: user).nil?
+  def can_join?(user)
+    true if user_group_ships.find_by(user: user).nil? && organizer != user
   end
 end
