@@ -38,6 +38,7 @@ gem 'bootstrap-sass'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 gem 'nprogress-rails'
+gem 'font-awesome-sass', '~> 4.3.0'
 
 
 # Api
