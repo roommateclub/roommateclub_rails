@@ -7,6 +7,8 @@
 #  apartment_id :integer
 #  street       :string
 #  postcode     :string
+#  latitude     :float
+#  longitude    :float
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

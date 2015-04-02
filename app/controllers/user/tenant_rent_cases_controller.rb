@@ -51,7 +51,8 @@ class User::TenantRentCasesController < User::BaseController
   # end
 
   def tenant_rent_case_params
-    params[:tenant_rent_case].permit(apartment_attributes:[:discription], 
-      groups_attributes: [:group_size, :organizer_id])
+    params[:tenant_rent_case].permit!
+    # (:price, apartment_attributes:[:discription], 
+    #   groups_attributes: [:group_size, :organizer_id])
   end
 end

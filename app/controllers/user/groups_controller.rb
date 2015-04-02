@@ -1,10 +1,11 @@
 class User::GroupsController < User::BaseController
   before_action :set_group, except:[:index]
   def index
-    @groups = current_user.groups.includes(:users)
+    @groups = Group.where(organizer: current_user)
   end
 
   def show
+    @user_group_ships = @group.user_group_ships
   end
 
   def edit

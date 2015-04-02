@@ -20,8 +20,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'rolify'
-gem 'cancancan'
+gem 'pundit'
 
 # State Machine
 gem 'workflow'

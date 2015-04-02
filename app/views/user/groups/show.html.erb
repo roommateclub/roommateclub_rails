@@ -1,3 +1,8 @@
 <h1><%= @group.name %></h1>
 <%= simple_format(@group.discription) %>
+<% @user_group_ships.each do |user_group_ship| %>
+  <%= user_group_ship.user.username %>
+  <%= truncate(user_group_ship.message) %>
+  <%= user_group_ship.state %>
+<% end %>
 

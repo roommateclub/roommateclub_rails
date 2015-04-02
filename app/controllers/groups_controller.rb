@@ -18,8 +18,12 @@ class GroupsController < ApplicationController
   def create
     @rent_case = LandlordRentCase.find(params[:rent_case_id])
     @group = @rent_case.groups.build
-    @group.save
-    respond_with(@group)
+    if @group.save
+      @group.user_group_ships.create(user: current_user, state: "joined")
+      respond_with(@group)
+    else
+      render :show, alert: "Fuck"
+    end
   end
 
   def edit
