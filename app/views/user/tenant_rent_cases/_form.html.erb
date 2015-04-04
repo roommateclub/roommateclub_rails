@@ -1,10 +1,10 @@
 <%= f.error_notification %>
 
-<%= f.simple_fields_for :apartment do |a| %>
+<%= f.simple_fields_for :apartment, @apartment do |a| %>
   <%= a.input :discription, label: "公寓介紹" %>
 <% end %>
 
-<%= f.simple_fields_for :groups do |g| %>
+<%= f.simple_fields_for :group, @group do |g| %>
   <%= g.input :name, label: "Group 名稱" %>
   <%= g.input :group_size, label: "分租人數" %>
   <%= g.hidden_field :organizer_id, value: current_user.id %>

@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :join_group]
+  before_action :is_user
   respond_to :html
 
   def index
@@ -17,8 +18,9 @@ class GroupsController < ApplicationController
 
   def create
     @rent_case = LandlordRentCase.find(params[:rent_case_id])
-    @group = @rent_case.groups.build
+    @group = @rent_case.groups.build(group_params)
     if @group.save
+      @group.update(organizer: current_user)
       @group.user_group_ships.create(user: current_user, state: "joined")
       respond_with(@group)
     else

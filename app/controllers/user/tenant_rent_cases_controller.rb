@@ -16,7 +16,7 @@ class User::TenantRentCasesController < User::BaseController
   def new
     @tenant_rent_case = current_user.tenant_rent_cases.build
     @apartment = @tenant_rent_case.build_apartment
-    @groups = @tenant_rent_case.groups.build
+    @group = Group.new
   end
 
   def create
@@ -51,8 +51,6 @@ class User::TenantRentCasesController < User::BaseController
   # end
 
   def tenant_rent_case_params
-    params[:tenant_rent_case].permit!
-    # (:price, apartment_attributes:[:discription], 
-    #   groups_attributes: [:group_size, :organizer_id])
+    params[:tenant_rent_case].permit(:price, apartment_attributes: [:discription], group_attributes: [:name, :group_size, :organizer_id])
   end
 end

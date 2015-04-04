@@ -1,8 +1,18 @@
 <h1><%= @group.name %></h1>
 <%= simple_format(@group.discription) %>
-<% @user_group_ships.each do |user_group_ship| %>
-  <%= user_group_ship.user.username %>
-  <%= truncate(user_group_ship.message) %>
-  <%= user_group_ship.state %>
+<div class="col-sm-6">
+  已加入名單
+<% @joined_list.each do |user|  %>
+  <li>名稱:<%= user.user.username %></li>
 <% end %>
-
+</div>
+<div class="col-sm-6">
+  等待審核名單
+  <ul>
+  <% @pending_list.each do |user| %>
+    <li>名稱:<%= user.user.username %></li>
+    <li>訊息:<%= truncate(user.message) %></li>
+    <li>狀態:<%= user.state %></li>
+  <% end %>
+  </ul>
+</div>

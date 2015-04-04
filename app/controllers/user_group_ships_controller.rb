@@ -1,5 +1,6 @@
 class UserGroupShipsController < ApplicationController
 
+  before_action :is_user
   respond_to :html
 
   def create

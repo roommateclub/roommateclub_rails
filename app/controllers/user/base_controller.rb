@@ -4,13 +4,4 @@ class User::BaseController < ApplicationController
   def index
     
   end
-
-  private
-
-  def is_user
-    unless current_user.present?
-      redirect_to new_user_registration_path
-      # flash alert "必須登入"
-    end
-  end
 end

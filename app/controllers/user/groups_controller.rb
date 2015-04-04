@@ -5,7 +5,8 @@ class User::GroupsController < User::BaseController
   end
 
   def show
-    @user_group_ships = @group.user_group_ships
+    @pending_list = @group.user_group_ships.where(state: "pending")
+    @joined_list = @group.user_group_ships.where(state: "joined")
   end
 
   def edit

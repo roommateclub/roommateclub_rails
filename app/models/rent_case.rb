@@ -20,9 +20,8 @@ class RentCase < ActiveRecord::Base
 
   belongs_to :apartment
   belongs_to :owner, class_name: :User
-  has_many :groups
 
-  accepts_nested_attributes_for :apartment, :groups
+  accepts_nested_attributes_for :apartment
 
   
   workflow_column :state
@@ -32,9 +31,13 @@ class RentCase < ActiveRecord::Base
     state :expired
   end
 
-  # def rent
-  #   puts "cool"
-  # end
+  def can_create_group?(user)
+    if self.type == "LandlordRentCase"
+      true unless self.groups.where(organizer: user).exists?
+    else
+      self.group.nil? ? true : false
+    end
+  end
 
 
 end

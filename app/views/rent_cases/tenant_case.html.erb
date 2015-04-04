@@ -1,0 +1,16 @@
+<%= @rent_case.price %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>人數</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @group.group_size %></td>
+      <td><%= link_to("加入 Group", group_path(@group)) %></td>
+    </tr>
+  </tbody>
+</table>
+  

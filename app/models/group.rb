@@ -17,8 +17,14 @@ class Group < ActiveRecord::Base
   has_many :users, through: :user_group_ships
   belongs_to :rent_case
   belongs_to :organizer, class_name: :User
+  after_create :create_organizer_user_group_ship, if: Proc.new {|group| group.rent_case.type == "TenantRentCase"}
+
+  def create_organizer_user_group_ship
+    self.user_group_ships.create(user: organizer, state: "joined")
+  end
 
   def can_join?(user)
     true if user_group_ships.find_by(user: user).nil? && organizer != user
   end
+
 end

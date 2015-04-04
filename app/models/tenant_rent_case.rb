@@ -15,10 +15,6 @@
 #
 
 class TenantRentCase < RentCase
-  # after_create :create_unique_group
-
-
-  # def create_unique_group
-  #   self.groups.create(organizer: self.owner)
-  # end
+  has_one :group, foreign_key: "rent_case_id"
+  accepts_nested_attributes_for :group
 end
