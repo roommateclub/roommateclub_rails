@@ -1,12 +1,13 @@
 class User::GroupsController < User::BaseController
   before_action :set_group, except:[:index]
   def index
-    @groups = Group.where(organizer: current_user)
+    @groups = current_user.groups
+    @own_groups = Group.where(organizer: current_user)
   end
 
   def show
     @pending_list = @group.user_group_ships.where(state: "pending")
-    @joined_list = @group.user_group_ships.where(state: "joined")
+    @approved_list = @group.user_group_ships.where(state: "approved")
   end
 
   def edit

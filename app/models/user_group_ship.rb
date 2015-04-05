@@ -20,16 +20,19 @@ class UserGroupShip < ActiveRecord::Base
   
   workflow do 
     state :pending do
-      event :accept, transition_to: :joined
+      event :approve, transition_to: :approved
       event :reject, transition_to: :rejected
     end
 
-    state :joined
+    state :approved
     state :rejected
   end
 
   # workflow events
-  def accept
+  def approve
+  end
+
+  def reject
   end
 
 

@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
     @group = @rent_case.groups.build(group_params)
     if @group.save
       @group.update(organizer: current_user)
-      @group.user_group_ships.create(user: current_user, state: "joined")
+      @group.user_group_ships.create(user: current_user, state: "approved")
       respond_with(@group)
     else
       render :show, alert: "Fuck"

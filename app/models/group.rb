@@ -20,7 +20,7 @@ class Group < ActiveRecord::Base
   after_create :create_organizer_user_group_ship, if: Proc.new {|group| group.rent_case.type == "TenantRentCase"}
 
   def create_organizer_user_group_ship
-    self.user_group_ships.create(user: organizer, state: "joined")
+    self.user_group_ships.create(user: organizer, state: "approved")
   end
 
   def can_join?(user)

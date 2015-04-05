@@ -1,6 +1,26 @@
 <table class="table">
   <thead>
     <tr>
+      <th>我建立的 Groups</th>
+    </tr>
+    <tr>
+      <th>人數</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @own_groups.each do |group| %>
+    <tr>
+      <td><%= link_to(group.name, user_group_path(group)) %></td>
+      <td><%= truncate(group.discription) %></td>
+      <td><%= group.group_size %></td>
+    </tr> 
+  <% end %>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
       <th>人數</th>
     </tr>
   </thead>
