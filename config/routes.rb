@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups, only: [:index, :show] do
-    post :join_group, on: :member, as: :join
+    post "user_group_ships/create", on: :member, as: :user_join
   end
 
   namespace :user, path: "/dashboard" do
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :landlord_rent_cases
     end
     get 'rent_cases' => 'rent_cases#index'
+    patch "/user_group_ships/:id" => "user_group_ships#update", as: :update_user_group_ship
   end
 
   get 'apartments/index', path: 'apartments', as: 'apartments'
