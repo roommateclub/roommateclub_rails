@@ -33,5 +33,7 @@ Rails.application.routes.draw do
     registrations: "user/registrations",
     sessions: "user/sessions"
      }
-  get 'pages/home' => 'high_voltage/pages#show', id: 'home'
+  get 'pages/about'
+  get 'pages/contact'
+  root to: 'pages#home'
 end
