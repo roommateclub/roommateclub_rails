@@ -7,43 +7,10 @@
               as: :radio_buttons, 
               collection: [["我是房東", true], ["我是房客分租", false]] %>
   <%= f.simple_fields_for(:address, @address) do |address| %>
-    <%= address.select :city_id, @cities, prompt: "請選擇縣市" %>
-    <%= address.select :district_id, [], prompt: "請選擇區域" %>
-    <!-- <select name="apartment[address][district_id]" id="apartment_address_district_id">
-      <option value="default" disabled="disabled">請選擇區域</option>
-    </select> -->
+    <%= address.input :city_id, collection: @cities, prompt: "請選擇縣市", input_html: {class: "apartment_address_attributes_city"} %>
+    <%= address.input :district_id, collection: [], prompt: "請選擇區域", input_html: {class: "apartment_address_attributes_district"} %>
     <%= address.input :street, label: "街道" %>
   <% end %>
   <%= f.button :submit, "登陸" %>
-  
 <% end %>
-
-<script>
-  // Refactored this by moving them to coffee/reactjs
-  $('#apartment_address_attributes_city_id').on('change', function(e) {
-    $('#apartment_address_attributes_district_id').find('option').remove();
-    city_id = $('#apartment_address_attributes_city_id option:selected').val();
-    get_districts_in_city(city_id);
-  });
-  function get_districts_in_city(city_id){
-    $.ajax({
-      url: "<%= api_v1_locations_districts_index_path %>" + "?city_id=" + city_id,
-      format: "json",
-      success: function(data){
-        var i ;
-        var select = document.getElementById('apartment_address_attributes_district_id');
-        for(i in data){
-          option = document.createElement("option");
-          option.text = data[i].name;
-          option.value = data[i].id;
-          select.appendChild(option);
-        }
-      },
-      error: function(){
-        alert("沒有資料");
-      }
-    })
-  }
-
-  // api_v1_locations_districts_index_path
-</script>
+<%= render "user/apartments/address_initializer" %>
