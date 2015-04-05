@@ -16,6 +16,8 @@ class User::TenantRentCasesController < User::BaseController
   def new
     @tenant_rent_case = current_user.tenant_rent_cases.build
     @apartment = @tenant_rent_case.build_apartment
+    @address = @apartment.build_address
+    @cities = City.all.map{ |city| [city.name, city.id] }
     @group = Group.new
   end
 
@@ -51,6 +53,8 @@ class User::TenantRentCasesController < User::BaseController
   # end
 
   def tenant_rent_case_params
-    params[:tenant_rent_case].permit(:price, apartment_attributes: [:discription], group_attributes: [:name, :group_size, :organizer_id])
+    params[:tenant_rent_case].permit(:price, 
+      apartment_attributes: [:discription, address_attributes: [:city_id, :district_id, :street]], 
+      group_attributes: [:name, :group_size, :organizer_id])
   end
 end

@@ -2,6 +2,11 @@
 
 <%= f.simple_fields_for :apartment, @apartment do |a| %>
   <%= a.input :discription, label: "公寓介紹" %>
+  <%= a.simple_fields_for(:address, @address) do |address| %>
+    <%= address.input :city_id, collection: @cities, prompt: "請選擇縣市", input_html: {class: "apartment_address_attributes_city"} %>
+    <%= address.input :district_id, collection: [], prompt: "請選擇區域", input_html: {class: "apartment_address_attributes_district"} %>
+    <%= address.input :street, label: "街道" %>
+  <% end %>
 <% end %>
 
 <%= f.simple_fields_for :group, @group do |g| %>
@@ -17,3 +22,4 @@
 <div class="form-actions">
   <%= f.button :submit, "張貼" %>
 </div>
+<%= render "user/apartments/address_initializer" %>
