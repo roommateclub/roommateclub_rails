@@ -8,14 +8,8 @@
 </head>
 <body>
 <%= render 'layouts/topbar' %>
-<div class="container-fluid">
 <%= render 'layouts/notice_alerts' %>
-  <div class="row">
-    <div class="col-lg-offset-2 col-sm-offset-1 col-lg-8 col-sm-10">
-    <%= yield %>
-    </div>
-  </div>
-</div>
+<%= yield %>
 <%= render 'layouts/footer' %>
 </body>
 </html>

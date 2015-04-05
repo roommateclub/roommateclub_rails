@@ -12,8 +12,8 @@
     <div class="navbar-collapse collapse navbar-right">
       <ul class="nav navbar-nav">
         <li><%= link_to("Home", root_path ) %></li>
-        <li><%= link_to("關於 Nestogether", page_path("about")) %></li>
-        <li><%= link_to("聯絡我們", page_path("contact")) %></li>
+        <li><%= link_to("關於 Nestogether", pages_about_path) %></li>
+        <li><%= link_to("聯絡我們", pages_contact_path) %></li>
         <% if current_user.present? %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %><b class="caret"></b></a>
