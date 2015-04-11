@@ -50,9 +50,14 @@ $screen-lg: 1440px;
 @import "bootstrap/utilities";
 @import "bootstrap/responsive-utilities";
 
+
+// Components customization
 .btn, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
   border: none;
 }
 .form-group{
   overflow: hidden;
+}
+.form-horizontal .control-label{
+  text-align: left;
 }

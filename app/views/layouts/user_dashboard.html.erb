@@ -3,6 +3,7 @@
 <head>
   <title>Nestogether</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'user/base', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= yield :javascripts %>
   <%= csrf_meta_tags %>
@@ -31,7 +32,7 @@
 </div>
 <div class="container content-wrapper">
   <div class="row">
-    <div class="col-lg-offset-2 col-lg-8 col-sm-12">
+    <div class="col-lg-offset-2 col-lg-8">
     <%= yield %>
     </div>
   </div>
