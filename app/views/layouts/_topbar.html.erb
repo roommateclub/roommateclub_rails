@@ -7,24 +7,34 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to("Nestogether", root_path, class: "navbar-brand" ) %>
+      <%= link_to("roommate club", root_path, class: "navbar-brand") %>
     </div>
     <div class="navbar-collapse collapse navbar-right">
       <ul class="nav navbar-nav">
-        <li><%= link_to("Home", root_path ) %></li>
-        <li><%= link_to("關於 Nestogether", pages_about_path) %></li>
-        <li><%= link_to("聯絡我們", pages_contact_path) %></li>
+        <li><%= link_to("瀏覽公寓", rent_cases_path) %></li>
+        <li><%= link_to("瀏覽合租", groups_path) %></li>
         <% if current_user.present? %>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %><b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to("控制面板", user_dashboard_path) %></li>
-            <li><%= link_to("個人資料", edit_user_profile_path) %></li>
-            <li><%= link_to("我的公寓列表", user_apartments_path) %></li>
-            <li><%= link_to("我的案件列表", user_rent_cases_path) %></li>
+          <a href="#" class="dropdown-toggle" id="dropdown-landlord" data-toggle="dropdown">公寓管理<b class="caret"></b></a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown-landlord">
+            <li><%= link_to("登錄公寓", new_user_apartment_path, class: "btn btn-success") %></li>
+            <li><%= link_to("出租公寓列表", user_apartments_path) %></li>
           </ul>
         </li>
-        <li><%= link_to("登出", destroy_user_session_path, method: :DELETE) %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" id="dropdown-tenant" data-toggle="dropdown">合租管理<b class="caret"></b></a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown-tenant">
+            <li><%= link_to("發起分租", new_user_tenant_rent_case_path, class: "btn btn-info") %></li>
+            <li><%= link_to("參與分租列表", user_groups_path) %></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" id="dropdown-user" data-toggle="dropdown"><%= current_user.username %><b class="caret"></b></a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown-user">
+            <li><%= link_to("個人資料", edit_user_profile_path) %></li>
+            <li><%= link_to("登出", destroy_user_session_path, method: :DELETE) %></li>
+          </ul>
+        </li>
         <% else %>
         <li><%= link_to("註冊", new_user_registration_path) %></li>
         <li><%= link_to("登入", new_user_session_path) %></li>

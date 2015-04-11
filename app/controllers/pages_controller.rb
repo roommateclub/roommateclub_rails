@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   layout 'pages'
-  def home
+  def landing
     
   end
   def about

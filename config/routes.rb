@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   namespace :user, path: "/dashboard" do
-    get 'base/index', path: "", as: :dashboard
+    # get 'base/index', path: "", as: :dashboard
     resource :profile, except: [:destroy]
     resources :tenant_rent_cases
     resources :landlord_rent_cases
@@ -27,13 +27,11 @@ Rails.application.routes.draw do
     patch "/user_group_ships/:id" => "user_group_ships#update", as: :update_user_group_ship
   end
 
-  get 'apartments/index', path: 'apartments', as: 'apartments'
-
   devise_for :users, controllers: { 
     registrations: "user/registrations",
     sessions: "user/sessions"
      }
   get 'pages/about'
   get 'pages/contact'
-  root to: 'pages#home'
+  root to: 'pages#landing'
 end

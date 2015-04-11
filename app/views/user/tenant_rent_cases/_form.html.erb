@@ -1,25 +1,40 @@
 <%= f.error_notification %>
-
-<%= f.simple_fields_for :apartment, @apartment do |a| %>
-  <%= a.input :discription, label: "公寓介紹" %>
-  <%= a.simple_fields_for(:address, @address) do |address| %>
-    <%= address.input :city_id, collection: @cities, prompt: "請選擇縣市", input_html: {class: "apartment_address_attributes_city"} %>
-    <%= address.input :district_id, collection: [], prompt: "請選擇區域", input_html: {class: "apartment_address_attributes_district"} %>
-    <%= address.input :street, label: "街道" %>
+<div class="row">
+  <%= f.simple_fields_for :apartment, @apartment, wrapper: false do |a| %>
+    <%= a.simple_fields_for(:address, @address, wrapper: false) do |address| %>
+      <div class="form-group">
+        <label for="tenant_rent_case_apartment_attributes_address_attributes_city_id" class="col-sm-2 control-label">請選擇縣市</label>
+        <div class="col-sm-4">
+          <%= address.input :city_id, collection: @cities, label: false, prompt: "縣市", input_html: {class: "apartment_address_attributes_city"}, wrapper: false %>
+        </div>
+        <label for="tenant_rent_case_apartment_attributes_address_attributes_district_id" class="col-sm-2 control-label">請選擇行政區</label>
+        <div class="col-sm-4">
+          <%= address.input :district_id, collection: [], label: false, prompt: "行政區", input_html: {class: "apartment_address_attributes_district col-sm-6"}, wrapper: false %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tenant_rent_case_apartment_attributes_address_attributes_street" class="col-sm-2 control-label">街道</label>
+        <div class="col-sm-10">
+          <%= address.input :street, label: false, class: "form-control" %>  
+        </div>
+      </div>
+    <% end %>
+    <div class="form-group">
+    <label for="" class="col-sm-2 control-label">公寓介紹</label>
+      <div class="col-sm-10">
+        <%= a.input :discription, label: false %>
+      </div>
+    </div>
   <% end %>
-<% end %>
+</div>
 
 <%= f.simple_fields_for :group, @group do |g| %>
-  <%= g.input :name, label: "Group 名稱" %>
-  <%= g.input :group_size, label: "分租人數" %>
+  <%= g.input :name, label: "合租名稱" %>
+  <%= g.input :group_size, label: "徵求室友人數" %>
   <%= g.hidden_field :organizer_id, value: current_user.id %>
 <% end %>
   
-<div class="form-inputs">
-  <%= f.input :price, label: "價格($新台幣/月)" %>
-</div>
+<%= f.input :price, label: "每月價格($新台幣)" %>
 
-<div class="form-actions">
-  <%= f.button :submit, "張貼" %>
-</div>
+<%= f.button :submit, "張貼", class: "btn btn-primary pull-right btn-lg" %>
 <%= render "user/apartments/address_initializer" %>
