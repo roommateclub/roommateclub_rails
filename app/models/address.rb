@@ -17,5 +17,11 @@ class Address < ActiveRecord::Base
   belongs_to :apartment
   belongs_to :district
 
+  delegate :city, to: :district
+
   attr_accessor :city_id
+
+  def display
+    "#{postcode},#{city.name}, #{district.name}, #{street}"
+  end
 end
