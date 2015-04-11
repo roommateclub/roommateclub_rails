@@ -1,16 +1,26 @@
-<h1>登陸公寓</h1>
+<h1 class="page-title">登陸公寓</h1>
 
-<%= simple_form_for(@apartment, url: user_apartments_path) do |f| %>
+<%= simple_form_for(@apartment, url: user_apartments_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
   <%= f.input :discription, label: "公寓介紹" %>
-  <%= f.input :is_landlord, 
-              label: "身份",
-              as: :radio_buttons, 
-              collection: [["我是房東", true], ["我是房客分租", false]] %>
-  <%= f.simple_fields_for(:address, @address) do |address| %>
-    <%= address.input :city_id, collection: @cities, prompt: "請選擇縣市", input_html: {class: "apartment_address_attributes_city"} %>
-    <%= address.input :district_id, collection: [], prompt: "請選擇區域", input_html: {class: "apartment_address_attributes_district"} %>
-    <%= address.input :street, label: "街道" %>
+  <%= f.simple_fields_for(:address, @address, wrapper: false) do |address| %>
+    <div class="form-group">
+      <label for="tenant_rent_case_apartment_attributes_address_attributes_city_id" class="col-sm-2 control-label">請選擇縣市</label>
+      <div class="col-sm-4">
+        <%= address.input :city_id, collection: @cities, label: false, prompt: "縣市", input_html: {class: "apartment_address_attributes_city"}, wrapper: false %>
+      </div>
+      <label for="tenant_rent_case_apartment_attributes_address_attributes_district_id" class="col-sm-2 control-label">請選擇行政區</label>
+      <div class="col-sm-4">
+        <%= address.input :district_id, collection: [], label: false, prompt: "行政區", input_html: {class: "apartment_address_attributes_district col-sm-6"}, wrapper: false %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tenant_rent_case_apartment_attributes_address_attributes_street" class="col-sm-2 control-label">街道</label>
+      <div class="col-sm-10">
+        <%= address.input :street, label: false, class: "form-control", wrapper: false %>
+      </div>
+    </div>
   <% end %>
-  <%= f.button :submit, "登陸" %>
+  <hr>
+  <%= f.button :submit, "張貼", class: "btn btn-primary pull-right btn-lg" %>
 <% end %>
 <%= render "user/apartments/address_initializer" %>

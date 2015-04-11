@@ -19,6 +19,8 @@ class Group < ActiveRecord::Base
   belongs_to :organizer, class_name: :User
   after_create :create_organizer_user_group_ship, if: Proc.new {|group| group.rent_case.type == "TenantRentCase"}
 
+  validates_presence_of :organizer
+
   def create_organizer_user_group_ship
     self.user_group_ships.create(user: organizer, state: "approved")
   end

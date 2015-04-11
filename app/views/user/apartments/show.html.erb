@@ -1,4 +1,8 @@
+<p>公寓介紹:</p>
 <p><%= @apartment.discription %></p>
+<p>地址:</p>
+<p><%= @apartment.address.display %></p>
+<p>每月每人價格:</p>
 <p>
   <% @apartment.rent_cases.each do |rent_case| %>
     <%= rent_case.price %>

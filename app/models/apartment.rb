@@ -5,7 +5,6 @@
 #  id                 :integer          not null, primary key
 #  landlord_id        :integer
 #  discription        :text
-#  personal_amount    :integer
 #  public_room_amount :integer
 #  balcony_amount     :integer
 #  kitchen            :boolean

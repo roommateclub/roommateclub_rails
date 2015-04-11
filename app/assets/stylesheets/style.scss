@@ -1236,7 +1236,9 @@ a {
 ################################################################# */
 
 #headerwrap {
-  background-color: #00b3fe;
+  background-image: image-url('cover.jpeg') !important;
+  background-size: cover;
+  background-position: center;
   min-height: 550px;
   padding-top: 100px;
   padding-bottom: 0px;
@@ -1375,8 +1377,8 @@ h5 {
 /* Footer */
 
 #footerwrap {
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   background: #384452;
   p {
     color: #bfc9d3;
