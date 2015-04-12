@@ -11,7 +11,7 @@ default: &default
 
 development:
   <<: *default
-  database: nestogether
+  database: roommateclub
   username: 
   password: 
 
