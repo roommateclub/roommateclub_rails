@@ -8,12 +8,12 @@ role :app, %w{apps@roommateclub.co}
 role :web, %w{apps@roommateclub.co}
 role :db,  %w{apps@roommateclub.co}
 
-set :stage, :production
+set :stage, :staging
 
-set :deploy_to, "/home/apps/roommateclub"
+set :deploy_to, "/home/apps/roommateclub_staging"
 
-server "roommateclub.co", user: "apps", roles: %w{web app db}
-server "roommateclub.co", user: "apps", roles: %w{web app}
+server "roommateclub_server", user: "apps", roles: %w{web app db}
+server "roommateclub_server", user: "apps", roles: %w{web app}
 
 set :branch, ENV["REVISION"] || ENV["BRANCH_NAME"] || "master"
 
@@ -23,7 +23,7 @@ set :branch, ENV["REVISION"] || ENV["BRANCH_NAME"] || "master"
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+# server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 
 
 # Custom SSH Options

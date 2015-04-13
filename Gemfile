@@ -52,9 +52,7 @@ gem 'high_voltage' # For static pages
 # gem 'bcrypt', '~> 3.1.7'
 gem 'capistrano-rvm'
 group :development do
-  gem 'capistrano'
   gem 'capistrano-rails'
-  gem 'capistrano-ext'
   gem 'capistrano-bundler'
   gem 'cape'
 end
