@@ -23,6 +23,5 @@ pickle-email-*.html
 /.bundle
 /vendor/bundle
 
-Gemfile.lock
 # Ignore application configuration
 /config/application.yml
