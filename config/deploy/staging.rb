@@ -12,8 +12,8 @@ set :stage, :staging
 
 set :deploy_to, "/home/apps/roommateclub_staging"
 
-server "roommateclub_server", user: "apps", roles: %w{web app db}
-server "roommateclub_server", user: "apps", roles: %w{web app}
+server "roommateclub.co", user: "apps", roles: %w{web app db}
+server "roommateclub.co", user: "apps", roles: %w{web app}
 
 set :branch, ENV["REVISION"] || ENV["BRANCH_NAME"] || "master"
 
