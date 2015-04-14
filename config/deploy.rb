@@ -13,7 +13,7 @@ set :repo_url,  "git@github.com:roommateclub/roommateclub_rails.git"
 
 set :log_level, :info
 
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs, %w{bin log tmp vendor/bundle}
 
 SSHKit.config.command_map[:rake]  = "bundle exec rake" #8
