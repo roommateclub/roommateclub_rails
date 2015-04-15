@@ -15,9 +15,12 @@ set :log_level, :info
 
 set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs, %w{bin log tmp vendor/bundle}
+set :assets_dependencies, %w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)
 
 SSHKit.config.command_map[:rake]  = "bundle exec rake" #8
 SSHKit.config.command_map[:rails] = "bundle exec rails"
+
+Rake::Task["deploy:assets:precompile"].clear_actions
 
 set :keep_releases, 20
 
