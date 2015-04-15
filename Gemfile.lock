@@ -280,6 +280,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   seo_helper
   simple_form
+  sprockets (~> 2.12.3)
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)

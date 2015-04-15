@@ -12,6 +12,7 @@ gem 'therubyracer', platforms: :ruby
 # JS
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'sprockets', '~> 2.12.3'
 # gem 'react-rails'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
