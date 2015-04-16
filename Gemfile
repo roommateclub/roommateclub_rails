@@ -54,7 +54,6 @@ gem 'high_voltage' # For static pages
 gem 'capistrano-rvm'
 group :development do
   gem 'capistrano-rails'
-  gem 'capistrano-bundler'
   gem 'cape'
 end
 

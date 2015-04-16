@@ -257,7 +257,6 @@ DEPENDENCIES
   bullet
   byebug
   cape
-  capistrano-bundler
   capistrano-rails
   capistrano-rvm
   carrierwave
