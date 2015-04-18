@@ -8,7 +8,7 @@ role :app, %w{apps@roommateclub.co}
 role :web, %w{apps@roommateclub.co}
 role :db,  %w{apps@roommateclub.co}
 
-set :stage, :staging
+set :stage, :production
 
 set :deploy_to, "/home/apps/roommateclub_staging"
 
