@@ -20,16 +20,24 @@ class UserGroupShip < ActiveRecord::Base
   
   workflow do 
     state :pending do
-      event :approve, transition_to: :approved
-      event :reject, transition_to: :rejected
+      event :approve, transitions_to: :approved
+      event :reject, transitions_to: :rejected
     end
 
     state :approved
     state :rejected
+
+    after_transition do
+      activate_group
+    end
   end
 
   # workflow events
   def approve
+  end
+
+  def activate_group
+    group.activate! if group.has_enough_roommates?
   end
 
   def reject

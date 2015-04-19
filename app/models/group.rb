@@ -10,9 +10,12 @@
 #  updated_at   :datetime         not null
 #  name         :string
 #  discription  :text
+#  state        :string
 #
 
 class Group < ActiveRecord::Base
+  include Workflow
+
   has_many :user_group_ships
   has_many :users, through: :user_group_ships
   belongs_to :rent_case
@@ -21,8 +24,32 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :organizer
 
-  def joined_members
-    user_group_ships.where(state: "approved").map(&:user) - [organizer]
+  workflow_column :state
+  workflow do
+    state :pending do
+      event :activate, transition_to: :activated
+    end
+    state :activated
+    state :expired
+  end
+# workflow events start
+  def activate
+    if rent_case.type == "TenantRentCase"
+      rent_case.rent!
+    end
+  end
+# workflow events end
+
+  def joined_roommates(option={})
+    if option[:include_organizer].present? 
+      user_group_ships.with_approved_state.map(&:user) 
+    else
+      user_group_ships.with_approved_state.map(&:user) - [organizer]
+    end
+  end
+
+  def has_enough_roommates?
+    joined_roommates.size == group_size
   end
 
   def create_organizer_user_group_ship

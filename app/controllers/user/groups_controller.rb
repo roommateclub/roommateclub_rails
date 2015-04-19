@@ -1,5 +1,6 @@
 class User::GroupsController < User::BaseController
   before_action :set_group, except:[:index]
+  respond_to :html
   def index
     @groups = current_user.groups
     @own_groups = Group.where(organizer: current_user)
@@ -14,6 +15,8 @@ class User::GroupsController < User::BaseController
   end
 
   def update
+    @group.activate!
+    respond_with(@group, location: user_group_path)
   end
 
   def destroy
