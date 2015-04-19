@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419091650) do
+ActiveRecord::Schema.define(version: 20150411191939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20150419091650) do
     t.datetime "updated_at",   null: false
     t.string   "name"
     t.text     "discription"
-    t.string   "state"
   end
 
   add_index "groups", ["organizer_id"], name: "index_groups_on_organizer_id", using: :btree
