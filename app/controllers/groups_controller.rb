@@ -8,7 +8,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @user_group_ship = @group.user_group_ships.build if @group.can_join?(current_user)
+    @user_group_ship = @group.user_group_ships.find_by(user: current_user)
+    @group.user_group_ships.find_by(user: current_user)
+    @new_user_group_ship = @group.user_group_ships.build if current_user.can_join?(@group)
   end
 
   def new

@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
 
   has_one :profile
+  delegate :nickname, to: :profile
   has_many :apartments, foreign_key: :landlord_id
   has_many :tenant_rent_cases, foreign_key: :owner_id
   has_many :landlord_rent_cases, foreign_key: :owner_id
@@ -34,5 +35,13 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :username, :password, :password_confirmation
 
   attr_accessor :password_confirmation
+
+  def can_join?(group)
+    true if user_group_ships.find_by(group: group).nil? && self != group.organizer
+  end
+
+  def can_approve_join_request?(group)
+    true if self == group.organizer
+  end
 
 end

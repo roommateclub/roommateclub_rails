@@ -21,12 +21,12 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :organizer
 
-  def create_organizer_user_group_ship
-    self.user_group_ships.create(user: organizer, state: "approved")
+  def joined_members
+    user_group_ships.where(state: "approved").map(&:user) - [organizer]
   end
 
-  def can_join?(user)
-    true if user_group_ships.find_by(user: user).nil? && organizer != user
+  def create_organizer_user_group_ship
+    self.user_group_ships.create(user: organizer, state: "approved")
   end
 
 end
