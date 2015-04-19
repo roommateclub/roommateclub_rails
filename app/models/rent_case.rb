@@ -23,12 +23,17 @@ class RentCase < ActiveRecord::Base
 
   accepts_nested_attributes_for :apartment
 
-  
   workflow_column :state
   workflow do
-    state :active
+    state :active do
+      event :rent, transitions_to: :rented
+    end
     state :rented
     state :expired
+  end
+
+  def rent
+    
   end
 
   def can_create_group?(user)

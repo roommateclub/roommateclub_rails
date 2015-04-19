@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
 
   def can_join?(group)
-    true if user_group_ships.find_by(group: group).nil? && self != group.organizer
+    true if user_group_ships.find_by(group: group).nil? && self != group.organizer && !group.has_enough_roommates?
   end
 
   def can_approve_join_request?(group)
