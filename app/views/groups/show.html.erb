@@ -10,7 +10,7 @@
     <h3>發起人:<%= @group.organizer.nickname %></h3>
     <h3>目前成員:</h3>
     <ul>
-    <% @group.joined_members.each do |user| %>
+    <% @group.joined_roommates.each do |user| %>
       <li><%= user.nickname %></li>
     <% end %>
     </ul>
