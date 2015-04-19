@@ -10,6 +10,7 @@
 #  updated_at   :datetime         not null
 #  name         :string
 #  discription  :text
+#  state        :string
 #
 
 require 'test_helper'
