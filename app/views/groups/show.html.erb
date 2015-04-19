@@ -15,7 +15,7 @@
     <% end %>
     </ul>
     <% if @new_user_group_ship.present? %>
-      <%= simple_form_for(@user_group_ship, url: user_join_group_path(@group)) do |f| %>
+      <%= simple_form_for(@new_user_group_ship, url: user_join_group_path(@group)) do |f| %>
         <%= f.input :message %>
         <%= f.button :submit, "傳送請求", class: "btn btn-primary" %>
       <% end %>
