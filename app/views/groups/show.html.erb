@@ -1,7 +1,25 @@
-<% if @user_group_ship.present? %>
-<%= simple_form_for(@user_group_ship, url: user_join_group_path(@group)) do |f| %>
-  <%= f.input :message %>
-  <%= f.button :submit, "傳送請求" %>
-<% end %>
-<% end %>
+<h6>
+  <small><%= user_group_ship_state(@group, @user_group_ship) %></small>
+</h6>
+<h1>合租標題:<%= @group.name %></h1>
+<div class="row">
+  <div class="col-sm-6">
+    <h1>地圖</h1>
+  </div>
+  <div class="col-sm-6">
+    <h3>發起人:<%= @group.organizer.nickname %></h3>
+    <h3>目前成員:</h3>
+    <ul>
+    <% @group.joined_members.each do |user| %>
+      <li><%= user.nickname %></li>
+    <% end %>
+    </ul>
+    <% if @new_user_group_ship.present? %>
+      <%= simple_form_for(@user_group_ship, url: user_join_group_path(@group)) do |f| %>
+        <%= f.input :message %>
+        <%= f.button :submit, "傳送請求", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  </div>  
+</div>
   

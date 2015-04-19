@@ -1,4 +1,4 @@
-<h1><%= @group.name %></h1>
+<h1>合租標題:<%= @group.name %></h1>
 <%= simple_format(@group.discription) %>
 <div class="col-sm-6">
   已加入名單
@@ -13,12 +13,14 @@
     <li>名稱:<%= user_group_ship.user.username %></li>
     <li>訊息:<%= truncate(user_group_ship.message) %></li>
     <li>狀態:<%= user_group_ship.state %></li>
-    <%= simple_form_for(user_group_ship, url: user_update_user_group_ship_path(user_group_ship)) do |f| %>
-      <%= f.button :button, value: "approve" do  %>
-        同意
-      <% end %>
-      <%= f.button :button, value: "reject" do  %>
-        拒絕
+    <% if current_user.can_approve_join_request?(@group) %> 
+      <%= simple_form_for(user_group_ship, url: user_update_user_group_ship_path(user_group_ship)) do |f| %>
+        <%= f.button :button, value: "approve" do  %>
+          同意
+        <% end %>
+        <%= f.button :button, value: "reject" do  %>
+          拒絕
+        <% end %>
       <% end %>
     <% end %>
       
