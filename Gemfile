@@ -43,6 +43,7 @@ gem 'font-awesome-sass', '~> 4.3.0'
 # Api
 gem 'active_model_serializers'
 # Geology
+gem 'geocoder'
 
 # others
 gem 'seo_helper'
