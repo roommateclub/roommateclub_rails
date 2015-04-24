@@ -4,9 +4,9 @@
 <p><%= @apartment.address.display %></p>
 <p>每月每人價格:</p>
 <p>
-  <% @apartment.rent_cases.each do |rent_case| %>
-    <%= rent_case.price %>
-  <% end %>
+<% @apartment.rent_cases.each do |rent_case| %>
+  <%= rent_case.price %>
+<% end %>
 </p>
 
 <%= link_to("返回公寓列表", user_apartments_path) %>

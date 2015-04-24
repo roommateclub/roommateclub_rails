@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419091650) do
+ActiveRecord::Schema.define(version: 20150421142746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "district_id"
@@ -44,6 +45,18 @@ ActiveRecord::Schema.define(version: 20150419091650) do
   end
 
   add_index "apartments", ["landlord_id"], name: "index_apartments_on_landlord_id", using: :btree
+
+  create_table "assets", force: :cascade do |t|
+    t.integer  "viewable_id"
+    t.string   "viewable_type"
+    t.string   "file"
+    t.string   "type"
+    t.integer  "position"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "assets", ["viewable_id"], name: "index_assets_on_viewable_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"

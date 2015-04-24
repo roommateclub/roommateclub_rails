@@ -13,12 +13,16 @@ class User::ApartmentsController < User::BaseController
   def new
     @apartment = current_user.apartments.new
     @address = @apartment.build_address
+    @image = @apartment.images.build
     @cities = City.all.map{ |city| [city.name, city.id] }
   end
 
   def create
     @apartment = current_user.apartments.build(apartment_params)
     if @apartment.save
+      params[:apartment][:images_attributes].each do |image|
+        @apartment.images.create(file: image, viewable_id: @apartment.id)
+      end
       respond_with(@apartment, location: user_apartment_path(@apartment))
     else
       render :new
@@ -42,6 +46,7 @@ class User::ApartmentsController < User::BaseController
 
   def apartment_params
     params[:apartment].permit(:discription, :is_landlord,
-      address_attributes: [:city_id, :district_id, :street])
+      address_attributes: [:city_id, :district_id, :street],
+      images_attributes: [:file, :viewable_type])
   end
 end
