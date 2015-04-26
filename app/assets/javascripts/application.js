@@ -25,3 +25,4 @@
 //= require profiles.coffee
 //= require retina-1.1.0.js
 //= require window-resizer.js
+//= require map_initialize.js
