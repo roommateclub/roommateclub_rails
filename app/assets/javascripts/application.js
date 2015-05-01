@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.remotipart
 //= require turbolinks
 //= require bootstrap-sprockets
 // = require nprogress
@@ -26,3 +25,4 @@
 //= require profiles.coffee
 //= require retina-1.1.0.js
 //= require window-resizer.js
+//= require dropzone

@@ -28,6 +28,7 @@ gem 'workflow'
 # images
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'dropzonejs-rails'
 
 # form
 gem 'simple_form'

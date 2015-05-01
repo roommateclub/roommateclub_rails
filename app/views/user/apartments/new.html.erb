@@ -1,5 +1,8 @@
 <h1 class="page-title">登陸公寓</h1>
 
+<%= simple_form_for(@image, url: user_images_path, html: {class: "dropzone", id: "newImageForm"}) do |f| %>
+<% end %>
+
 <%= simple_form_for(@apartment, url: user_apartments_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
   <%= f.input :discription, label: "公寓介紹" %>
   <%= f.simple_fields_for(:address, @address, wrapper: false) do |address| %>
@@ -21,10 +24,26 @@
     </div>
   <% end %>
   <hr>
-  <%= f.simple_fields_for(:images, @image) do |image| %>
-    <%= image.file_field :file, multiple: true, name: "apartment[images_attributes][]" %>
-  <% end %>
-    
   <%= f.button :submit, "張貼", class: "btn btn-primary pull-right btn-lg" %>
 <% end %>
+  
+
+
 <%= render "user/apartments/address_initializer" %>
+<script>
+$(document).on("page:change", function(){
+  Dropzone.options.newImageForm = {
+    addRemoveLinks: true,
+    dictDefaultMessage: "點按選取圖片，或將圖片拖入",
+    init: function() {
+      this.on("success", function(file, response){
+        // obj = jQuery.parseJSON(response);
+        console.log(response.id);
+      });
+      this.on("removedfile", function(file){
+        console.log(file);
+      });
+    }
+  }
+})
+</script>
