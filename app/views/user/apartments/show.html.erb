@@ -1,4 +1,4 @@
-<p>公寓介紹:</p>
+<h1>公寓資料:</h1>
 <p><%= @apartment.discription %></p>
 <p>地址:</p>
 <p><%= @apartment.address.display %></p>
@@ -8,6 +8,11 @@
   <%= rent_case.price %>
 <% end %>
 </p>
+<div class="row">
+<% @images.each do |image| %>
+  <%= image_tag(image.file) %>
+<% end %>
+</div>
 
 <%= link_to("返回公寓列表", user_apartments_path) %>
 

@@ -26,6 +26,7 @@ gem 'pundit'
 gem 'workflow'
 
 # images
+gem 'dropzonejs-rails'
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'dropzonejs-rails'

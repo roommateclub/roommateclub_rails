@@ -8,10 +8,12 @@ class User::ApartmentsController < User::BaseController
   end
 
   def show
+    @images = @apartment.images
   end
 
   def new
     @apartment = current_user.apartments.new
+    @city = City.new
     @address = @apartment.build_address
     @image = @apartment.images.build
     @cities = City.all.map{ |city| [city.name, city.id] }
@@ -30,9 +32,22 @@ class User::ApartmentsController < User::BaseController
   end
 
   def edit
+    @address = @apartment.address
+    @city = @address.city
+    @districts = @city.districts
+    @cities = City.all.map{ |city| [city.name, city.id] }
   end
 
   def update
+    if @apartment.update(apartment_params)
+      respond_with(@apartment, location: user_apartment_path(@apartment))
+    else
+      @address = @apartment.address
+      @city = @address.city
+      @districts = @city.districts
+      @cities = City.all.map{ |city| [city.name, city.id] }
+      render :edit
+    end
   end
 
   def destroy

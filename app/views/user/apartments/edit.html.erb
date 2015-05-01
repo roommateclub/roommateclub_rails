@@ -1,2 +1,8 @@
-<h1>User::Apartments#edit</h1>
-<p>Find me in app/views/user/apartments/edit.html.erb</p>
+<h1 class="page-title">編輯公寓資訊</h1>
+
+<%= simple_form_for(@apartment, url: user_apartment_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
+  <%= render 'form', f: f %>
+  <%= f.button :submit, "完成", class: "btn btn-primary pull-right btn-lg" %>
+<% end %>
+
+<%= render "user/apartments/address_initializer" %>
