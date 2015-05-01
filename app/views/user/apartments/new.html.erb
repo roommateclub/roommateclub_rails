@@ -4,6 +4,7 @@
 <% end %>
 
 <%= simple_form_for(@apartment, url: user_apartments_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
+  <%= f.hidden_field :images, value: [] %>
   <%= f.input :discription, label: "公寓介紹" %>
   <%= f.simple_fields_for(:address, @address, wrapper: false) do |address| %>
     <div class="form-group">
@@ -31,20 +32,44 @@
 
 <%= render "user/apartments/address_initializer" %>
 <script>
-$(document).on("page:change", function(){
-  Dropzone.options.newImageForm = {
-    addRemoveLinks: true,
-    dictDefaultMessage: "點按選取圖片，或將圖片拖入",
-    init: function() {
-      this.on("success", function(file, response){
-        // obj = jQuery.parseJSON(response);
-        console.log(response.id);
-      });
-      this.on("removedfile", function(file){
-        console.log(file);
-      });
-    }
-  }
-})
+  Dropzone.autoDiscover = false;
+  var ready = function() {
+    $("#newImageForm").dropzone({
+      url: "<%= user_images_path %>",
+      autoProcessQueue: true,
+      uploadMultiple: true,
+      parallelUploads: 100,
+      maxFiles: 100,
+      addRemoveLinks: true,
+      dictDefaultMessage: "點按選取圖片，或將圖片拖入",
+
+      // The setting up of the dropzone
+      init: function() {
+        var myDropzone = this;
+
+        // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
+        // of the sending event because uploadMultiple is set to true.
+        this.on("sendingmultiple", function() {
+          // Gets triggered when the form is actually being sent.
+          // Hide the success button or the complete form.
+        });
+        this.on("successmultiple", function(files, response) {
+
+          // console.log($("#apartment_images").val());
+          
+          // $("#apartment_images").val();
+          // Gets triggered when the files have successfully been sent.
+          // Redirect user or notify of success.
+        });
+        this.on("errormultiple", function(files, response) {
+          // Gets triggered when there was an error sending the files.
+          // Maybe show form again, and notify user of error
+        });
+      }
+    });
+  };
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+// })
 </script>
 

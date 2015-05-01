@@ -1,12 +1,13 @@
 class User::ImagesController < User::BaseController
   def create
-    @image = Image.new(file: params[:file])
-    # binding.remote_pry
-    if @image.save!
-      respond_to do |format|
-        format.json{ render json: @image, status: :created }
-      end
-    else
+    images = []
+    params[:file].each_value do |file|
+      image = Image.new
+      image.file = file
+      images << image.id.to_s if image.save
+    end
+    respond_to do |format|
+      format.json{ render json: images, status: :created }
     end
   end
 

@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require nprogress
 //= require nprogress-turbolinks
@@ -26,3 +26,4 @@
 //= require retina-1.1.0.js
 //= require window-resizer.js
 //= require dropzone
+//= require turbolinks
