@@ -8,7 +8,7 @@
           <th>類型</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="rent_case_list">
       <% @rent_cases.each do |rent_case| %>
         <tr class="rent_case" data-lng="<%=rent_case.address.longitude%>" data-lat="<%=rent_case.address.latitude%>">
           <td><%= rent_case.id %></td>
@@ -23,3 +23,15 @@
     <div id="map_canvas" style="width:100%; height: 500px"></div>
   </div>
 </div>
+
+<div id="page_tag" data-tag="rent_case_list"></div>
+<script>
+  pageInit(function(){
+    GoogleMapUtilAssist.init($('#map_canvas'));
+    GoogleMapUtilAssist.showLocOnMap($('.rent_case:first'));
+  }, function(){
+    $('#rent_case_list').on('mouseenter', '.rent_case', function(){
+      GoogleMapUtilAssist.showLocOnMap($(this));
+    });
+  });
+</script>
