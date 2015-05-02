@@ -1,3 +1,8 @@
+<% content_for :script_init_always do %>
+  GoogleMapUtilAssist.init($('#map_canvas'));
+  GoogleMapUtilAssist.showLocOnMap($('#rent_case_data'));
+<% end %>
+
 <%= @rent_case.price %>
 <div id="rent_case_data" data-lng="<%=@rent_case.address.longitude%>" data-lat="<%=@rent_case.address.latitude%>" style="display:none"></div>
 <div class="row">
@@ -24,11 +29,3 @@
 <% if @rent_case.can_create_group?(current_user) %> 
 <%= link_to("建立 Group", new_rent_case_group_path(@rent_case)) %>
 <% end %>
-
-<div id="page_tag" data-tag="rent_case"></div>
-<script>
-  pageInit(function(){
-    GoogleMapUtilAssist.init($('#map_canvas'));
-    GoogleMapUtilAssist.showLocOnMap($('#rent_case_data'));
-  });
-</script>

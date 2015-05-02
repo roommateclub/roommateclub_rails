@@ -22,5 +22,9 @@
   </div>
 </div>
 <%= render 'layouts/footer' %>
+<div id="page_tag" data-tag="<%=controller_name+'#'+action_name%>"></div>
+<script>
+  pageInit(function(){<%= yield :script_init_always %>}, function(){<%=yield :script_init_once %>});
+</script>
 </body>
 </html>
