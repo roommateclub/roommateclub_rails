@@ -21,6 +21,9 @@ class Address < ActiveRecord::Base
 
   attr_accessor :city_id
 
+  geocoded_by :display               # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinates
+
   def display
     "#{postcode},#{city.name}, #{district.name}, #{street}"
   end

@@ -21,6 +21,8 @@ class RentCase < ActiveRecord::Base
   belongs_to :apartment
   belongs_to :owner, class_name: :User
 
+  has_one :address, :through=>:apartment
+
   accepts_nested_attributes_for :apartment
 
   workflow_column :state
