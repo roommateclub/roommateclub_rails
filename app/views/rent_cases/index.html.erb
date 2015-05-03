@@ -1,19 +1,36 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>編號</th>
-      <th>月租</th>
-      <th>類型</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @rent_cases.each do |rent_case| %>
-    <tr>
-      <td><%= rent_case.id %></td>
-      <td><%= link_to(rent_case.price, rent_case_path(rent_case)) %></td>
-      <td><%= rent_case.type %></td>
-    </tr>
-  <% end %>  
-  </tbody>
+<% content_for :script_init_always do %>
+  GoogleMapUtilAssist.init($('#map_canvas'));
+  GoogleMapUtilAssist.showLocOnMap($('.rent_case:first'));
+<% end %>
 
-</table>
+<% content_for :script_init_once do %>
+  $('#rent_case_list').on('mouseenter', '.rent_case', function(){
+    GoogleMapUtilAssist.showLocOnMap($(this));
+  });
+<% end %>
+
+<div class="row">
+  <div class="col-sm-6">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>編號</th>
+          <th>月租</th>
+          <th>類型</th>
+        </tr>
+      </thead>
+      <tbody id="rent_case_list">
+      <% @rent_cases.each do |rent_case| %>
+        <tr class="rent_case" data-lng="<%=rent_case.address.longitude%>" data-lat="<%=rent_case.address.latitude%>">
+          <td><%= rent_case.id %></td>
+          <td><%= link_to(rent_case.price, rent_case_path(rent_case)) %></td>
+          <td><%= rent_case.type %></td>
+        </tr>
+      <% end %>  
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-6">
+    <div id="map_canvas" style="width:100%; height: 500px"></div>
+  </div>
+</div>
