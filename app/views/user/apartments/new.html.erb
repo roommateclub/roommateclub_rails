@@ -4,7 +4,7 @@
 <% end %>
 
 <%= simple_form_for(@apartment, url: user_apartments_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
-  <%= f.hidden_field :images, value: [] %>
+  <%#= f.hidden_field :image_ids, value: [] %>
   <%= f.input :discription, label: "公寓介紹" %>
   <%= f.simple_fields_for(:address, @address, wrapper: false) do |address| %>
     <div class="form-group">
@@ -32,8 +32,8 @@
 
 <%= render "user/apartments/address_initializer" %>
 <script>
-  Dropzone.autoDiscover = false;
   var ready = function() {
+    Dropzone.autoDiscover = false;
     $("#newImageForm").dropzone({
       url: "<%= user_images_path %>",
       autoProcessQueue: true,
@@ -46,24 +46,33 @@
       // The setting up of the dropzone
       init: function() {
         var myDropzone = this;
-
-        // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
-        // of the sending event because uploadMultiple is set to true.
-        this.on("sendingmultiple", function() {
-          // Gets triggered when the form is actually being sent.
-          // Hide the success button or the complete form.
-        });
+        // this.on("sendingmultiple", function() {
+        // });
         this.on("successmultiple", function(files, response) {
-
-          // console.log($("#apartment_images").val());
-          
-          // $("#apartment_images").val();
-          // Gets triggered when the files have successfully been sent.
-          // Redirect user or notify of success.
+          var responseLength = response.length;
+          for(var i = 0; i < responseLength; i++ ){
+            files[i].serverID = response[i];
+            $('<input>').attr({
+                type: 'hidden',
+                id: response[i],
+                name: 'apartment[image_ids][]',
+                value: response[i]
+            }).appendTo('#new_apartment');
+          };
         });
-        this.on("errormultiple", function(files, response) {
-          // Gets triggered when there was an error sending the files.
-          // Maybe show form again, and notify user of error
+        // this.on("errormultiple", function(files, response) {
+        //   // Gets triggered when there was an error sending the files.
+        //   // Maybe show form again, and notify user of error
+        // });
+        this.on("removedfile", function(file, response) {
+          $.ajax({
+            url: "/dashboard/images/" + file.serverID,
+            type: "DELETE",
+            success: function(data){
+              var image = document.getElementById(file.serverID);
+              image.remove();
+            }
+          })
         });
       }
     });

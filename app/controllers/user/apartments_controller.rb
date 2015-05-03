@@ -20,11 +20,9 @@ class User::ApartmentsController < User::BaseController
   end
 
   def create
+    # binding.remote_pry
     @apartment = current_user.apartments.build(apartment_params)
     if @apartment.save
-      params[:apartment][:images_attributes].each do |image|
-        @apartment.images.create(file: image, viewable_id: @apartment.id)
-      end
       respond_with(@apartment, location: user_apartment_path(@apartment))
     else
       render :new
@@ -60,8 +58,7 @@ class User::ApartmentsController < User::BaseController
   end
 
   def apartment_params
-    params[:apartment].permit(:discription, :is_landlord,
-      address_attributes: [:city_id, :district_id, :street],
-      images_attributes: [:file, :viewable_type])
+    params[:apartment].permit(:discription, :is_landlord, image_ids: [],
+      address_attributes: [:city_id, :district_id, :street])
   end
 end

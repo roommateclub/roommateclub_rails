@@ -13,7 +13,8 @@ class User::ImagesController < User::BaseController
 
   def destroy
     @image = Image.find(params[:id])
-    
+    @image.destroy!
+    render json: {success: true} 
   end
 
   private
