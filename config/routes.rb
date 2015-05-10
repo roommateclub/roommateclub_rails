@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :landlord_rent_cases
     resources :groups
     resources :apartments do
+      post 'images/create', as: 'upload_image'
+      # resources :images, only: [:create, :destroy]
       resources :landlord_rent_cases
     end
     resources :images, only: [:create, :destroy]

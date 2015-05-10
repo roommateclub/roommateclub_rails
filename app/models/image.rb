@@ -14,5 +14,5 @@
 
 class Image < Asset
   mount_uploader :file, ImageUploader
-  belongs_to :apartment
+  belongs_to :apartment, foreign_key: :viewable_id
 end

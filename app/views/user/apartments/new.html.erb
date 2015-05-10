@@ -1,10 +1,9 @@
 <h1 class="page-title">登錄公寓</h1>
 
-<%= simple_form_for(@image, url: user_images_path, html: {class: "dropzone", id: "newImageForm"}) do |f| %>
+<%= simple_form_for(@new_image, url: user_images_path, html: {class: "dropzone", id: "newImageForm"}) do |f| %>
 <% end %>
 
 <%= simple_form_for(@apartment, url: user_apartments_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
-  <%#= f.hidden_field :image_ids, value: [] %>
   <%= f.input :discription, label: "公寓介紹" %>
   <%= f.simple_fields_for(:address, @address, wrapper: false) do |address| %>
     <div class="form-group">
@@ -27,8 +26,6 @@
   <hr>
   <%= f.button :submit, "張貼", class: "btn btn-primary pull-right btn-lg" %>
 <% end %>
-  
-
 
 <%= render "user/apartments/address_initializer" %>
 <script>
@@ -79,6 +76,5 @@
   };
   $(document).ready(ready);
   $(document).on('page:load', ready);
-// })
 </script>
 

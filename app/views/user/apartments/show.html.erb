@@ -13,6 +13,6 @@
   <%= image_tag(image.file) %>
 <% end %>
 </div>
-
+<%= link_to("編輯公寓資料", edit_user_apartment_path(@apartment)) %>
 <%= link_to("返回公寓列表", user_apartments_path) %>
 

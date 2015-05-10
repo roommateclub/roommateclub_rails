@@ -15,12 +15,11 @@ class User::ApartmentsController < User::BaseController
     @apartment = current_user.apartments.new
     @city = City.new
     @address = @apartment.build_address
-    @image = @apartment.images.build
+    @new_image = @apartment.images.build
     @cities = City.all.map{ |city| [city.name, city.id] }
   end
 
   def create
-    # binding.remote_pry
     @apartment = current_user.apartments.build(apartment_params)
     if @apartment.save
       respond_with(@apartment, location: user_apartment_path(@apartment))
@@ -34,6 +33,8 @@ class User::ApartmentsController < User::BaseController
     @city = @address.city
     @districts = @city.districts
     @cities = City.all.map{ |city| [city.name, city.id] }
+    @images = @apartment.images
+    @new_image = Image.new
   end
 
   def update
