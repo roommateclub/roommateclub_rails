@@ -18,7 +18,7 @@
 class Apartment < ActiveRecord::Base
   has_one :address
   has_many :rent_cases
-  has_many :images, as: :viewable
+  has_many :images, as: :viewable, dependent: :destroy
   belongs_to :landlord, class_name: "User"
   belongs_to :district
   belongs_to :city
