@@ -6,7 +6,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <script type="text/javascript"
-    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAKRJKx801kE_wVua1bFLX5mijzcslDDJA&sensor=FALSE">
+    src="http://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>&sensor=FALSE">
   </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -15,16 +15,12 @@
 <%= render 'layouts/topbar' %>
 <div class="container content-wrapper">
 <%= render 'layouts/notice_alerts' %>
-  <div class="row">
-    <div class="col-lg-offset-2 col-lg-8 ">
-    <%= yield %>
-    </div>
-  </div>
+  <%= yield %>
 </div>
 <%= render 'layouts/footer' %>
 <div id="page_tag" data-tag="<%=controller_name+'#'+action_name%>"></div>
 <script>
-  pageInit(function(){<%= yield :script_init_always %>}, function(){<%=yield :script_init_once %>});
+  pageInit(function(){<%= yield :script_init_always %>}, function(){<%= yield :script_init_once %>});
 </script>
 </body>
 </html>

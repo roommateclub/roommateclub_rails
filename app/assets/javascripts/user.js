@@ -25,8 +25,5 @@
 //= require profiles.coffee
 //= require retina-1.1.0.js
 //= require window-resizer.js
-//= require dropzone
-//= require cnlib_exp.js
-//= require gmap_util.js
-//= require turbolinks_assist.js
 //= require turbolinks
+//= require dropzone

@@ -18,21 +18,16 @@
 class Apartment < ActiveRecord::Base
   has_one :address
   has_many :rent_cases
+  has_many :images, as: :viewable, dependent: :destroy
   belongs_to :landlord, class_name: "User"
   belongs_to :district
   belongs_to :city
   
   enum type: [:stair, :elevator]
 
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :address, :images
+  
   attr_accessor :is_landlord, :city_id
-
-  # def self.register(params, current_user_id)
-  #   current_apartment = self.new(params)
-  #   current_apartment.landlord_id = current_user_id if params[:is_landlord] == true
-  #   return current_apartment
-  #   # Move this to service PORO
-  # end
 
   def register_apartment(is_landlord, option = {})
     landlord_id = option[:landlord_id]

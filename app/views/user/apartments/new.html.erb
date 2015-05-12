@@ -1,26 +1,102 @@
-<h1 class="page-title">登陸公寓</h1>
+<h1 class="page-title">編輯公寓資訊</h1>
 
-<%= simple_form_for(@apartment, url: user_apartments_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
-  <%= f.input :discription, label: "公寓介紹" %>
-  <%= f.simple_fields_for(:address, @address, wrapper: false) do |address| %>
-    <div class="form-group">
-      <label for="tenant_rent_case_apartment_attributes_address_attributes_city_id" class="col-sm-2 control-label">請選擇縣市</label>
-      <div class="col-sm-4">
-        <%= address.input :city_id, collection: @cities, label: false, prompt: "縣市", input_html: {class: "apartment_address_attributes_city"}, wrapper: false %>
-      </div>
-      <label for="tenant_rent_case_apartment_attributes_address_attributes_district_id" class="col-sm-2 control-label">請選擇行政區</label>
-      <div class="col-sm-4">
-        <%= address.input :district_id, collection: [], label: false, prompt: "行政區", input_html: {class: "apartment_address_attributes_district col-sm-6"}, wrapper: false %>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="tenant_rent_case_apartment_attributes_address_attributes_street" class="col-sm-2 control-label">街道</label>
-      <div class="col-sm-10">
-        <%= address.input :street, label: false, class: "form-control", wrapper: false %>
-      </div>
-    </div>
+<% if @images.present? %>
+<div class="row">
+  <% @images.each do |image| %>
+  <div class="col-xs-6 col-md-3 image_wrapper">
+    <a href="#" class="thumbnail">
+      <%= image_tag(image.file) %>
+      <%= link_to("刪除圖片", user_image_path(image), method: :DELETE, remote: true, class: "delete_image") %>
+    </a>
+  </div>
   <% end %>
-  <hr>
-  <%= f.button :submit, "張貼", class: "btn btn-primary pull-right btn-lg" %>
+</div>
 <% end %>
+
+<a href="#" class="btn btn-success" data-toggle="modal" data-target="#myModal">新增圖片</a>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">上傳圖片</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(@new_image, url: user_apartment_upload_image_path(@apartment.id), html: {class: "dropzone", id: "newImageForm"}) do |f| %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button id="finished_uploading" type="button" class="btn btn-primary">完成</button>
+        <button id="cancel_uploaded" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%= simple_form_for(@apartment, url: user_apartment_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
+  <%= render 'form', f: f %>
+  <%= f.button :submit, "完成", class: "btn btn-primary pull-right btn-lg" %>
+<% end %>
+
 <%= render "user/apartments/address_initializer" %>
+<script>
+  $('.delete_image').bind('ajax:beforeSend', function() {
+    NProgress.start();
+  });
+
+  $('.delete_image').bind('ajax:complete', function() {
+    $(this).parent("div .image_wrapper").remove();
+    NProgress.done()
+  });
+
+  var ready = function() {
+    Dropzone.autoDiscover = false;
+    $("#newImageForm").dropzone({
+      url: "<%= user_apartment_upload_image_path(@apartment.id) %>",
+      autoProcessQueue: true,
+      uploadMultiple: true,
+      parallelUploads: 100,
+      maxFiles: 100,
+      addRemoveLinks: true,
+      dictDefaultMessage: "點按選取圖片，或將圖片拖入",
+      dictCancelUpload: "取消",
+      dictRemoveFile: "刪除圖片",
+      acceptedFiles: ".jpeg,.jpg,.png,.gif",
+
+      // The setting up of the dropzone
+      init: function() {
+        var myDropzone = this;
+        this.on("successmultiple", function(files, response) {
+          var responseLength = response.length;
+          for(var i = 0; i < responseLength; i++ ){
+            files[i].serverID = response[i];
+          };
+        });
+        // this.on("thumbnail", function(file){
+        //   $('<h1>cool</h1>').appendTo('.image_wrapper')
+        //   console.log(file);
+        // });
+        // this.on("errormultiple", function(files, response) {
+        //   // Gets triggered when there was an error sending the files.
+        //   // Maybe show form again, and notify user of error
+        // });
+        this.on("removedfile", function(file, response) {
+          $.ajax({
+            url: "/dashboard/images/" + file.serverID,
+            type: "DELETE",
+            success: function(data){
+              var image = document.getElementById(file.serverID);
+            }
+          })
+        });
+        $("#myModal").bind("hide.bs.modal", function(){
+          myDropzone.removeAllFiles(true);
+        })
+      }
+    });
+    $("#finished_uploading").on("click", function(){
+      Turbolinks.visit("<%= url_for %>")
+    });
+  };
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+</script>

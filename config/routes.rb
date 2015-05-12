@@ -21,8 +21,11 @@ Rails.application.routes.draw do
     resources :landlord_rent_cases
     resources :groups
     resources :apartments do
+      post 'images/create', as: 'upload_image'
+      # resources :images, only: [:create, :destroy]
       resources :landlord_rent_cases
     end
+    resources :images, only: [:create, :destroy]
     get 'rent_cases' => 'rent_cases#index'
     patch "/user_group_ships/:id" => "user_group_ships#update", as: :update_user_group_ship
   end

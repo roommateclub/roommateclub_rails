@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: assets
+#
+#  id            :integer          not null, primary key
+#  viewable_id   :integer
+#  viewable_type :string
+#  file          :string
+#  type          :string
+#  position      :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  viewable_id: 1
+  viewable_type: MyString
+  attachment: MyString
+  type: 
+  position: 1
+
+two:
+  viewable_id: 1
+  viewable_type: MyString
+  attachment: MyString
+  type: 
+  position: 1

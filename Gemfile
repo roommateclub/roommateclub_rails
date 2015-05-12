@@ -11,6 +11,7 @@ gem 'therubyracer', platforms: :ruby
 
 # JS
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'turbolinks'
 gem 'sprockets', '~> 2.12.3'
 
@@ -26,6 +27,7 @@ gem 'pundit'
 gem 'workflow'
 
 # images
+gem 'dropzonejs-rails'
 gem 'mini_magick'
 gem 'carrierwave'
 
