@@ -60,6 +60,7 @@
       dictDefaultMessage: "點按選取圖片，或將圖片拖入",
       dictCancelUpload: "取消",
       dictRemoveFile: "刪除圖片",
+      acceptedFiles: ".jpeg,.jpg,.png,.gif",
 
       // The setting up of the dropzone
       init: function() {
@@ -88,8 +89,7 @@
           })
         });
         $("#myModal").bind("hide.bs.modal", function(){
-          myDropzone.removeAllFiles(true);
-          Turbolinks.visit("<%= url_for %>")
+          var result = myDropzone.removeAllFiles(true);
         })
       }
     });
