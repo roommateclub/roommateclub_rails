@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421142746) do
+ActiveRecord::Schema.define(version: 20150608055709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20150421142746) do
   add_index "districts", ["city_id"], name: "index_districts_on_city_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.integer  "rent_case_id"
     t.integer  "organizer_id"
     t.integer  "group_size"
     t.datetime "created_at",   null: false
@@ -82,10 +81,10 @@ ActiveRecord::Schema.define(version: 20150421142746) do
     t.string   "name"
     t.text     "discription"
     t.string   "state"
+    t.string   "type"
   end
 
   add_index "groups", ["organizer_id"], name: "index_groups_on_organizer_id", using: :btree
-  add_index "groups", ["rent_case_id"], name: "index_groups_on_rent_case_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.string   "nickname"
@@ -97,6 +96,14 @@ ActiveRecord::Schema.define(version: 20150421142746) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "rent_case_groups", force: :cascade do |t|
+    t.integer "rent_case_id"
+    t.integer "group_id"
+  end
+
+  add_index "rent_case_groups", ["group_id"], name: "index_rent_case_groups_on_group_id", using: :btree
+  add_index "rent_case_groups", ["rent_case_id"], name: "index_rent_case_groups_on_rent_case_id", using: :btree
 
   create_table "rent_cases", force: :cascade do |t|
     t.integer  "apartment_id"

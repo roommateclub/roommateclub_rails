@@ -15,5 +15,6 @@
 #
 
 class LandlordRentCase < RentCase
-  has_many :groups, foreign_key: "rent_case_id"
+  has_many :rent_case_groups, foreign_key: :rent_case_id
+  has_many :groups, through: :rent_case_groups
 end

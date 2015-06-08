@@ -13,12 +13,13 @@
 #  type         :string
 #
 
-class Group < ActiveRecord::Base
+class LandlordGroup < Group
   include Workflow
 
   has_many :user_group_ships
   has_many :users, through: :user_group_ships
-  has_many :rent_cases
+  has_many :rent_case_groups
+  has_and_belongs_to_many :landlord_rent_cases, through: :rent_case_group, foreign_key: "rent_case_id"
   belongs_to :organizer, class_name: :User
   # after_create :create_organizer_user_group_ship, if: Proc.new {|group| group.rent_case.type == "TenantRentCase"}
 

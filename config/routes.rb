@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   end
 
   resources :rent_cases, only: [:index, :show] do
-    resources :groups, shallow: true
+    resources :groups
   end
 
-  resources :groups, only: [:index, :show] do
+  resources :groups do
     post "user_group_ships/create", on: :member, as: :user_join
   end
 

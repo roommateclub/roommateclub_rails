@@ -3,7 +3,6 @@
 # Table name: groups
 #
 #  id           :integer          not null, primary key
-#  rent_case_id :integer
 #  organizer_id :integer
 #  group_size   :integer
 #  created_at   :datetime         not null
@@ -11,6 +10,7 @@
 #  name         :string
 #  discription  :text
 #  state        :string
+#  type         :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

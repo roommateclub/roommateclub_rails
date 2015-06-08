@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :join_group]
-  before_action :is_user
+  before_action :is_user, except: [:index]
   respond_to :html
 
   def index
@@ -14,13 +14,15 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @rent_case = LandlordRentCase.find(params[:rent_case_id])
-    @group = @rent_case.groups.build
+    if current_user.can_create_group?
+      @group = current_user.groups.build
+    else
+      redirect_to :back, alert: "你不能發起合租"
+    end
   end
 
   def create
-    @rent_case = LandlordRentCase.find(params[:rent_case_id])
-    @group = @rent_case.groups.build(group_params)
+    @group = current_user.groups.build(group_params)
     if @group.save
       @group.update(organizer: current_user)
       @group.user_group_ships.create(user: current_user, state: "approved")
