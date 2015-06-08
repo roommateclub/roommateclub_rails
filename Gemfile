@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
+gem 'annotate'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -41,7 +42,6 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 gem 'nprogress-rails'
 gem 'font-awesome-sass', '~> 4.3.0'
 
-
 # Api
 gem 'active_model_serializers'
 # Geology
@@ -53,19 +53,16 @@ gem 'high_voltage' # For static pages
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'capistrano-rvm'
 group :development do
+  gem 'capistrano-rvm'
   gem 'capistrano-rails'
   gem 'cape'
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-remote'
-  gem 'annotate'
   gem 'bullet'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
 end

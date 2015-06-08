@@ -15,6 +15,10 @@
 #
 
 class TenantRentCase < RentCase
-  has_one :group, foreign_key: "rent_case_id"
-  accepts_nested_attributes_for :group
+  has_one :rent_case_group, foreign_key: :rent_case_id
+  has_one :tenant_group, through: :rent_case_group, class_name: 'Group'
+
+  # has_one :captain_membership, -> { where captain: true}, class_name: 'Membership'
+  # has_one :captain, through: :captain_membership, source: :player
+  accepts_nested_attributes_for :tenant_group
 end

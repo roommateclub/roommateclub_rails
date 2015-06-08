@@ -13,6 +13,7 @@
       <ul class="nav navbar-nav">
         <li><%= link_to("瀏覽公寓", rent_cases_path) %></li>
         <li><%= link_to("瀏覽合租", groups_path) %></li>
+        <li><%= link_to("發起合租", new_group_path) %></li>
         <% if current_user.present? %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" id="dropdown-landlord" data-toggle="dropdown">公寓管理<b class="caret"></b></a>

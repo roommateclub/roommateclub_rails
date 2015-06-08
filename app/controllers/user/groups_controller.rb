@@ -1,5 +1,5 @@
 class User::GroupsController < User::BaseController
-  before_action :set_group, except:[:index]
+  before_action :set_group, except:[:index, :new]
   respond_to :html
   def index
     @groups = current_user.groups
@@ -9,6 +9,14 @@ class User::GroupsController < User::BaseController
   def show
     @pending_list = @group.user_group_ships.where(state: "pending")
     @approved_list = @group.user_group_ships.where(state: "approved")
+  end
+
+  def new
+    @group = current_user.groups.build
+  end
+
+  def create
+    
   end
 
   def edit

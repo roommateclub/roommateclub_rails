@@ -36,12 +36,20 @@ class User < ActiveRecord::Base
 
   attr_accessor :password_confirmation
 
+  def can_create_group?
+    true if current_group_size < 3
+  end
+
   def can_join?(group)
     true if user_group_ships.find_by(group: group).nil? && self != group.organizer && !group.has_enough_roommates?
   end
 
   def can_approve_join_request?(group)
     true if self == group.organizer
+  end
+
+  def current_group_size
+    groups.size
   end
 
 end
