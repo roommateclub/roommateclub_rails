@@ -19,7 +19,7 @@ class TenantGroup < Group
   has_many :user_group_ships
   has_many :users, through: :user_group_ships
   has_one :rent_case_group, foreign_key: :group_id
-  has_one :tenant_rent_case, through: :rent_case_group
+  has_one :tenant_rent_case, through: :rent_case_group, class_name: "TenantRentCase"
   belongs_to :organizer, class_name: :User
   # after_create :create_organizer_user_group_ship, if: Proc.new {|group| group.rent_case.type == "TenantRentCase"}
 
