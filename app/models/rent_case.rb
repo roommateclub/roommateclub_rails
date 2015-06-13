@@ -4,14 +4,13 @@
 #
 #  id           :integer          not null, primary key
 #  apartment_id :integer
-#  owner_id     :integer
+#  user_id      :integer
 #  price        :integer
 #  move_in_date :datetime
 #  discription  :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  state        :string
-#  type         :string(25)
 #
 
 class RentCase < ActiveRecord::Base
@@ -21,7 +20,9 @@ class RentCase < ActiveRecord::Base
   belongs_to :apartment
   belongs_to :owner, class_name: :User
 
-  has_one :address, :through=>:apartment
+  has_one :address, through: :apartment
+  has_many :pins, foreign_key: :rent_case_id
+  has_many :groups, through: :pins
 
   accepts_nested_attributes_for :apartment
 

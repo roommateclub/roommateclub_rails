@@ -1,29 +1,27 @@
 # == Schema Information
 #
-# Table name: groups
+# Table name: tenant_groups
 #
-#  id           :integer          not null, primary key
-#  organizer_id :integer
-#  group_size   :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  name         :string
-#  discription  :text
-#  state        :string
-#  type         :string
+#  id             :integer          not null, primary key
+#  title          :string
+#  organizer_id   :integer
+#  share_case_id  :integer
+#  group_size     :integer
+#  discription    :text
+#  workflow_state :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
-class TenantGroup < Group
+class TenantGroup < ActiveRecord::Base
   include Workflow
 
-  has_many :user_group_ships
-  has_many :users, through: :user_group_ships
-  has_one :rent_case_group, foreign_key: :group_id
-  has_one :tenant_rent_case, through: :rent_case_group, class_name: "TenantRentCase"
+  has_many :user_group_ships, as: :groupable
+  has_many :users, through: :user_group_ships, as: :groupable
+  has_one :share_case
   belongs_to :organizer, class_name: :User
   # after_create :create_organizer_user_group_ship, if: Proc.new {|group| group.rent_case.type == "TenantRentCase"}
 
-  workflow_column :state
   workflow do
     state :pending do
       event :activate, transition_to: :activated
@@ -54,5 +52,4 @@ class TenantGroup < Group
   def create_organizer_user_group_ship
     self.user_group_ships.create(user: organizer, state: "approved")
   end
-
 end

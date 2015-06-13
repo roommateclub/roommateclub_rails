@@ -2,18 +2,20 @@
 #
 # Table name: user_group_ships
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  group_id   :integer
-#  state      :string           default("0")
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  message    :text
+#  id             :integer          not null, primary key
+#  user_id        :integer
+#  groupable_id   :integer
+#  state          :string           default("0")
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  message        :text
+#  groupable_type :string
 #
 
 class UserGroupShip < ActiveRecord::Base
   belongs_to :user
-  belongs_to :group
+  belongs_to :groupable, polymorphic: true
+  
 
   include Workflow
   workflow_column :state

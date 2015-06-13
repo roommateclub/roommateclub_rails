@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   respond_to :html
 
   def index
-    @groups = Group.all.includes(:rent_case)
+    @groups = Group.all.includes(:rent_cases)
   end
 
   def show

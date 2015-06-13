@@ -2,15 +2,14 @@
 #
 # Table name: groups
 #
-#  id           :integer          not null, primary key
-#  organizer_id :integer
-#  group_size   :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  name         :string
-#  discription  :text
-#  state        :string
-#  type         :string
+#  id             :integer          not null, primary key
+#  organizer_id   :integer
+#  group_size     :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  name           :string
+#  discription    :text
+#  workflow_state :string
 #
 
 require 'test_helper'

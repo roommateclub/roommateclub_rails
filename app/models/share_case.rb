@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: rent_cases
+# Table name: share_cases
 #
 #  id           :integer          not null, primary key
 #  apartment_id :integer
@@ -10,13 +10,12 @@
 #  discription  :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  state        :string
 #
 
-require 'test_helper'
+class ShareCase < ActiveRecord::Base
+  belongs_to :apartment
+  belongs_to :owner, class_name: User, foreign_key: :user_id
+  has_one :tenant_group
 
-class RentCaseTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  accepts_nested_attributes_for :apartment, :tenant_group
 end

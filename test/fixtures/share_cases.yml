@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: rent_cases
+# Table name: share_cases
 #
 #  id           :integer          not null, primary key
 #  apartment_id :integer
@@ -10,17 +10,20 @@
 #  discription  :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  state        :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  apartment_id: 1
+  user_id: 1
+  price: 1
+  move_in_date: 2015-06-10 01:10:56
+  discription: MyText
+
+two:
+  apartment_id: 1
+  user_id: 1
+  price: 1
+  move_in_date: 2015-06-10 01:10:56
+  discription: MyText

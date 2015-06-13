@@ -1,20 +1,21 @@
 # == Schema Information
 #
-# Table name: user_group_ships
+# Table name: tenant_groups
 #
 #  id             :integer          not null, primary key
-#  user_id        :integer
-#  groupable_id   :integer
-#  state          :string           default("0")
+#  title          :string
+#  organizer_id   :integer
+#  share_case_id  :integer
+#  group_size     :integer
+#  discription    :text
+#  workflow_state :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  message        :text
-#  groupable_type :string
 #
 
 require 'test_helper'
 
-class UserGroupShipTest < ActiveSupport::TestCase
+class TenantGroupTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
