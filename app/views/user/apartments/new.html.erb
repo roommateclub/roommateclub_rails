@@ -1,37 +1,7 @@
-<h1 class="page-title">編輯公寓資訊</h1>
+<h1 class="page-title">登錄公寓</h1>
 
-<% if @images.present? %>
-<div class="row">
-  <% @images.each do |image| %>
-  <div class="col-xs-6 col-md-3 image_wrapper">
-    <a href="#" class="thumbnail">
-      <%= image_tag(image.file) %>
-      <%= link_to("刪除圖片", user_image_path(image), method: :DELETE, remote: true, class: "delete_image") %>
-    </a>
-  </div>
-  <% end %>
-</div>
+<%= simple_form_for(@new_image, url: user_images_path, html: {class: "dropzone", id: "newImageForm"}) do |f| %>
 <% end %>
-
-<a href="#" class="btn btn-success" data-toggle="modal" data-target="#myModal">新增圖片</a>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">上傳圖片</h4>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for(@new_image, url: user_images_path, html: {class: "dropzone", id: "newImageForm"}) do |f| %>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button id="finished_uploading" type="button" class="btn btn-primary">完成</button>
-        <button id="cancel_uploaded" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-      </div>
-    </div>
-  </div>
-</div>
 <%= simple_form_for(@apartment, url: user_apartments_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
   <%= render 'form', f: f %>
   <%= f.button :submit, "完成", class: "btn btn-primary pull-right btn-lg" %>
@@ -49,6 +19,8 @@
       parallelUploads: 100,
       maxFiles: 100,
       addRemoveLinks: true,
+      dictRemoveFile: "刪除圖片",
+      dictCancelUpload: "取消",
       dictDefaultMessage: "點按選取圖片，或將圖片拖入",
 
       // The setting up of the dropzone
