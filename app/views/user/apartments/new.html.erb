@@ -22,7 +22,7 @@
         <h4 class="modal-title" id="myModalLabel">上傳圖片</h4>
       </div>
       <div class="modal-body">
-        <%= simple_form_for(@new_image, url: user_apartment_upload_image_path(@apartment.id), html: {class: "dropzone", id: "newImageForm"}) do |f| %>
+        <%= simple_form_for(@new_image, url: user_images_path, html: {class: "dropzone", id: "newImageForm"}) do |f| %>
         <% end %>
       </div>
       <div class="modal-footer">
@@ -32,49 +32,42 @@
     </div>
   </div>
 </div>
-<%= simple_form_for(@apartment, url: user_apartment_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
+<%= simple_form_for(@apartment, url: user_apartments_path, wrapper: :horizontal_form, html: {class: "form-horizontal"}) do |f| %>
   <%= render 'form', f: f %>
   <%= f.button :submit, "完成", class: "btn btn-primary pull-right btn-lg" %>
 <% end %>
 
 <%= render "user/apartments/address_initializer" %>
+
 <script>
-  $('.delete_image').bind('ajax:beforeSend', function() {
-    NProgress.start();
-  });
-
-  $('.delete_image').bind('ajax:complete', function() {
-    $(this).parent("div .image_wrapper").remove();
-    NProgress.done()
-  });
-
   var ready = function() {
     Dropzone.autoDiscover = false;
     $("#newImageForm").dropzone({
-      url: "<%= user_apartment_upload_image_path(@apartment.id) %>",
+      url: "<%= user_images_path %>",
       autoProcessQueue: true,
       uploadMultiple: true,
       parallelUploads: 100,
       maxFiles: 100,
       addRemoveLinks: true,
       dictDefaultMessage: "點按選取圖片，或將圖片拖入",
-      dictCancelUpload: "取消",
-      dictRemoveFile: "刪除圖片",
-      acceptedFiles: ".jpeg,.jpg,.png,.gif",
 
       // The setting up of the dropzone
       init: function() {
         var myDropzone = this;
+        // this.on("sendingmultiple", function() {
+        // });
         this.on("successmultiple", function(files, response) {
           var responseLength = response.length;
           for(var i = 0; i < responseLength; i++ ){
             files[i].serverID = response[i];
+            $('<input>').attr({
+                type: 'hidden',
+                id: response[i],
+                name: 'apartment[image_ids][]',
+                value: response[i]
+            }).appendTo('#new_apartment');
           };
         });
-        // this.on("thumbnail", function(file){
-        //   $('<h1>cool</h1>').appendTo('.image_wrapper')
-        //   console.log(file);
-        // });
         // this.on("errormultiple", function(files, response) {
         //   // Gets triggered when there was an error sending the files.
         //   // Maybe show form again, and notify user of error
@@ -85,18 +78,16 @@
             type: "DELETE",
             success: function(data){
               var image = document.getElementById(file.serverID);
+              image.remove();
             }
           })
         });
-        $("#myModal").bind("hide.bs.modal", function(){
-          myDropzone.removeAllFiles(true);
-        })
       }
     });
-    $("#finished_uploading").on("click", function(){
+  };
+  $("#finished_uploading").on("click", function(){
       Turbolinks.visit("<%= url_for %>")
     });
-  };
   $(document).ready(ready);
   $(document).on('page:load', ready);
 </script>

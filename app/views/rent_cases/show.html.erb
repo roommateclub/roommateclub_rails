@@ -1,7 +1,12 @@
 <%= @rent_case.price %>
+<%= @rent_case.apartment.images.each do |image| %>
+  <%= image_tag(image) %>
+<% end %>
+<h2>別人發起的合租計畫</h2>
 <table class="table">
   <thead>
     <tr>
+      <th>合租計畫</th>
       <th>人數</th>
       <th></th>
     </tr>
@@ -9,6 +14,7 @@
   <tbody>
   <% @groups.each do |group| %>
     <tr>
+      <td><%= group.name %></td>
       <td><%= group.group_size %></td>
       <td><%= link_to("加入 Group", group_path(group)) %></td>
     </tr>

@@ -22,7 +22,6 @@ class Group < ActiveRecord::Base
   belongs_to :organizer, class_name: :User
   # after_create :create_organizer_user_group_ship, if: Proc.new {|group| group.rent_case.type == "TenantRentCase"}
 
-  workflow_column :state
   workflow do
     state :pending do
       event :activate, transition_to: :activated
