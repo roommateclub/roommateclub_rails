@@ -16,7 +16,7 @@
     <td><%= apartment.rent_cases.last.state rescue nil %></td>
     <!-- 依照公寓狀態改變按鈕 -->
     <td><%= link_to("編輯公寓資料", edit_user_apartment_path(apartment)) %></td>
-    <td><%= link_to("出租公寓", new_user_apartment_landlord_rent_case_path(apartment)) %></td>
+    <td><%= link_to("出租公寓", new_user_apartment_rent_case_path(apartment)) %></td>
 
   </tr>
   <% end %>

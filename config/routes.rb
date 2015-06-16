@@ -18,12 +18,12 @@ Rails.application.routes.draw do
     get 'base/index', path: "", as: :dashboard
     resource :profile, except: [:destroy]
     resources :share_cases
-    resources :landlord_rent_cases
+    resources :rent_cases
     resources :groups
     resources :apartments do
       post 'images/create', as: 'upload_image'
       # resources :images, only: [:create, :destroy]
-      resources :landlord_rent_cases
+      resources :rent_cases
     end
     resources :images, only: [:create, :destroy]
     get 'rent_cases' => 'rent_cases#index'
