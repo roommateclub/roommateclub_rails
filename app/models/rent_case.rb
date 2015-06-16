@@ -7,7 +7,7 @@
 #  user_id      :integer
 #  price        :integer
 #  move_in_date :datetime
-#  discription  :text
+#  description  :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  state        :string

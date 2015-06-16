@@ -54,7 +54,7 @@ class User::ShareCasesController < User::BaseController
 
   def share_case_params
     params[:share_case].permit(:price, 
-      apartment_attributes: [:discription, address_attributes: [:city_id, :district_id, :street]], 
+      apartment_attributes: [:description, address_attributes: [:city_id, :district_id, :street]], 
       tenant_group_attributes: [:title, :group_size, :organizer_id])
   end
 end

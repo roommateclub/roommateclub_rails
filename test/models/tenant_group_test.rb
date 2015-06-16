@@ -7,7 +7,7 @@
 #  organizer_id   :integer
 #  share_case_id  :integer
 #  group_size     :integer
-#  discription    :text
+#  description    :text
 #  workflow_state :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

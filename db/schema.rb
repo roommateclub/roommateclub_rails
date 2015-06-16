@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609175512) do
+ActiveRecord::Schema.define(version: 20150616135631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150609175512) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "landlord_id"
-    t.text     "discription"
+    t.text     "description"
     t.integer  "public_room_amount"
     t.integer  "balcony_amount"
     t.boolean  "kitchen"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20150609175512) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "name"
-    t.text     "discription"
+    t.text     "description"
     t.string   "workflow_state"
   end
 
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20150609175512) do
     t.integer  "user_id"
     t.integer  "price"
     t.datetime "move_in_date"
-    t.text     "discription"
+    t.text     "description"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "state"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20150609175512) do
     t.integer  "user_id"
     t.integer  "price"
     t.datetime "move_in_date"
-    t.text     "discription"
+    t.text     "description"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 20150609175512) do
     t.integer  "organizer_id"
     t.integer  "share_case_id"
     t.integer  "group_size"
-    t.text     "discription"
+    t.text     "description"
     t.string   "workflow_state"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
