@@ -1,6 +1,36 @@
-<h1>月租:<%= @rent_case.price %></h1>
-<h1>介紹:</h1>
-<p><%= @rent_case.apartment.description %></p>
+<a href="#" class="btn btn-success" data-toggle="modal" data-target="#add_pin_modal">將公寓加入清單</a>
+<div class="modal fade" id="add_pin_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">將公寓加入清單</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(@pin, url: add_pin_rent_case_path(@rent_case)) do |f| %>
+          <%= f.input :group_id, as: :select, collection: @user_groups %>
+      </div>
+      <div class="modal-footer">
+          <%= f.button :submit, "加入", class: "btn btn-primary" %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div class="page-header">
+  <h1>月租:<%= @rent_case.price %></h1>
+  <h1>介紹:</h1>
+  <p class="lead"><%= @rent_case.apartment.description %></p>
+  <address>
+    <strong>Twitter, Inc.</strong><br>
+    795 Folsom Ave, Suite 600<br>
+    San Francisco, CA 94107<br>
+    <abbr title="Phone">P:</abbr> (123) 456-7890
+  </address>
+</div>
 <h1>照片:</h1>
 <div class="row">
   <div class="col-xs-6 col-md-3">
@@ -11,6 +41,7 @@
   <% end %>
   </div>
 </div>
+
 <h2>別人發起的合租計畫</h2>
 <table class="table">
   <thead>
@@ -30,4 +61,3 @@
   <% end %>
   </tbody>
 </table>
-  

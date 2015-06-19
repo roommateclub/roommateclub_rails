@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
 
   has_one :profile
-  has_one :tenant_group
+  has_one :tenant_group, foreign_key: :organizer_id
   delegate :nickname, to: :profile
   has_many :apartments, foreign_key: :landlord_id
   has_many :share_cases

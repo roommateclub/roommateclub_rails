@@ -6,20 +6,24 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :rent_cases, only: [:index, :show] do
-    resources :groups
-  end
+  resources :share_cases, only: [:index, :show]
 
-  resources :groups do
-    post "user_group_ships/create", on: :member, as: :user_join
-  end
+  # resources :rent_cases, only: [:index, :show] do
+  #   resources :groups
+  #   post "add_pin", to: "user/groups#add_pin", on: :member
+  # end
+
+  # resources :groups do
+  #   post "user_group_ships/create", on: :member, as: :user_join
+  # end
 
   namespace :user, path: "/dashboard" do
     get 'base/index', path: "", as: :dashboard
     resource :profile, except: [:destroy]
     resources :share_cases
-    resources :rent_cases
-    resources :groups
+    resource :tenant_group, except: [:new, :create]
+    # resources :rent_cases
+    # resources :groups
     resources :apartments do
       post 'images/create', as: 'upload_image'
       # resources :images, only: [:create, :destroy]

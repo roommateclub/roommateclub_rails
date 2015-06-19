@@ -1,7 +1,64 @@
-<h1 class="page-title">張貼合租公寓資訊</h1>
+<h1 class="page-title">張貼分租公寓資訊</h1>
 
 <%= simple_form_for(@share_case, url: user_share_cases_path, wrapper: :horizontal_form, html:{class: "form-horizontal"}) do |f| %>
   <%= render 'form', f: f, apartment: @apartment, groups: @groups %>
   <hr>
+    
   <%= f.button :submit, "張貼", class: "btn btn-primary pull-right btn-lg" %>
 <% end %>
+<%= simple_form_for(@new_image, url: user_images_path, html: {class: "dropzone", id: "newImageForm"}) do |f| %>
+<% end %>
+<script>
+  var ready = function() {
+    Dropzone.autoDiscover = false;
+    $("#newImageForm").dropzone({
+      url: "<%= user_images_path %>",
+      autoProcessQueue: true,
+      uploadMultiple: true,
+      parallelUploads: 100,
+      maxFiles: 100,
+      addRemoveLinks: true,
+      dictRemoveFile: "刪除圖片",
+      dictCancelUpload: "取消",
+      dictDefaultMessage: "點按選取圖片，或將圖片拖入",
+
+      // The setting up of the dropzone
+      init: function() {
+        var myDropzone = this;
+        // this.on("sendingmultiple", function() {
+        // });
+        this.on("successmultiple", function(files, response) {
+          var responseLength = response.length;
+          for(var i = 0; i < responseLength; i++ ){
+            files[i].serverID = response[i];
+            $('<input>').attr({
+                type: 'hidden',
+                id: response[i],
+                name: 'share_case[apartment_attributes][image_ids][]',
+                value: response[i]
+            }).appendTo('#new_share_case');
+          };
+        });
+        // this.on("errormultiple", function(files, response) {
+        //   // Gets triggered when there was an error sending the files.
+        //   // Maybe show form again, and notify user of error
+        // });
+        this.on("removedfile", function(file, response) {
+          $.ajax({
+            url: "/dashboard/images/" + file.serverID,
+            type: "DELETE",
+            success: function(data){
+              var image = document.getElementById(file.serverID);
+              image.remove();
+            }
+          })
+        });
+      }
+    });
+  };
+  $("#finished_uploading").on("click", function(){
+      Turbolinks.visit("<%= url_for %>")
+    });
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+</script>

@@ -30,9 +30,23 @@ class User::GroupsController < User::BaseController
   def destroy
   end
 
+  def add_pin
+    @rent_case = RentCase.find(params[:id])
+    @pin = @rent_case.pins.build(group_params)
+    if @pin.save
+      redirect_to rent_case_path(@rent_case)
+    else
+      redirect_to rent_case_path(@rent_case), alert: "Fuck"
+    end
+  end
+
   private
 
   def set_group
     @group = Group.find(params[:id])
+  end
+
+  def group_params
+    params[:pin].permit(:group_id)
   end
 end

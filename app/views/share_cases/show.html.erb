@@ -1,0 +1,21 @@
+<div class="page-header">
+  <h1>月租:<%= @share_case.price %></h1>
+  <h1>介紹:</h1>
+  <p class="lead"><%= @share_case.apartment.description %></p>
+  <address>
+    <strong>Twitter, Inc.</strong><br>
+    795 Folsom Ave, Suite 600<br>
+    San Francisco, CA 94107<br>
+    <abbr title="Phone">P:</abbr> (123) 456-7890
+  </address>
+</div>
+<h1>照片:</h1>
+<div class="row">
+  <div class="col-xs-6 col-md-3">
+  <% @share_case.apartment.images.each do |image| %>
+    <a href="#" class="thumbnail">
+    <%= image_tag(image.file) %>
+    </a>
+  <% end %>
+  </div>
+</div>

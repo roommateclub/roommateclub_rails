@@ -11,23 +11,17 @@
     </div>
     <div class="navbar-collapse collapse navbar-right">
       <ul class="nav navbar-nav">
-        <li><%= link_to("瀏覽公寓", rent_cases_path) %></li>
-        <li><%= link_to("瀏覽合租", groups_path) %></li>
-        <li><%= link_to("發起合租", new_group_path) %></li>
+        <li><%= link_to("瀏覽分租", share_cases_path) %></li>
+        <li><%= link_to("發起分租", new_user_share_case_path, class: "btn btn-info") %></li>
+        <li><%= link_to("由我發起的分租", user_tenant_group_path) %></li>
+        <!-- <li><%#= link_to("發起合租", new_group_path) %></li> -->
         <% if current_user.present? %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" id="dropdown-landlord" data-toggle="dropdown">公寓管理<b class="caret"></b></a>
-          <ul class="dropdown-menu" aria-labelledby="dropdown-landlord">
-            <li><%= link_to("登錄公寓", new_user_apartment_path, class: "btn btn-success") %></li>
-            <li><%= link_to("出租公寓列表", user_apartments_path) %></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" id="dropdown-tenant" data-toggle="dropdown">合租管理<b class="caret"></b></a>
-          <ul class="dropdown-menu" aria-labelledby="dropdown-tenant">
-            <li><%= link_to("發起分租", new_user_share_case_path, class: "btn btn-info") %></li>
-            <li><%= link_to("參與分租列表", user_groups_path) %></li>
-          </ul>
+          <!-- <ul class="dropdown-menu" aria-labelledby="dropdown-landlord">
+            <li><%#= link_to("登錄公寓", new_user_apartment_path, class: "btn btn-success") %></li>
+            <li><%#= link_to("出租公寓列表", user_apartments_path) %></li>
+          </u -->l>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" id="dropdown-user" data-toggle="dropdown"><%= current_user.username %><b class="caret"></b></a>

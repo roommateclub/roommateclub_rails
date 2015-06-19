@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-6">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>編號</th>
+          <th>月租</th>
+        </tr>
+      </thead>
+      <tbody id="rent_case_list">
+      <% @share_cases.each do |share_case| %>
+        <tr class="rent_case" data-lng="<%=share_case.address.longitude rescue nil%>" data-lat="<%=share_case.address.latitude rescue nil%>">
+          <td><%= share_case.id %></td>
+          <td><%= link_to(share_case.price, share_case_path(share_case)) %></td>
+        </tr>
+      <% end %>  
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-6">
+    <div id="map_canvas" style="width:100%; height: 500px"></div>
+  </div>
+</div>

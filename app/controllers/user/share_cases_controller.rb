@@ -19,6 +19,7 @@ class User::ShareCasesController < User::BaseController
     @address = @apartment.build_address
     @cities = City.all.map{ |city| [city.name, city.id] }
     @tenant_group = TenantGroup.new
+    @new_image = Image.new
   end
 
   def create
@@ -54,7 +55,7 @@ class User::ShareCasesController < User::BaseController
 
   def share_case_params
     params[:share_case].permit(:price, 
-      apartment_attributes: [:description, address_attributes: [:city_id, :district_id, :street]], 
+      apartment_attributes: [:description, image_ids: [], address_attributes: [:city_id, :district_id, :street]], 
       tenant_group_attributes: [:title, :group_size, :organizer_id])
   end
 end
