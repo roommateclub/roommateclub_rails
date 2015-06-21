@@ -23,6 +23,8 @@ class Apartment < ActiveRecord::Base
   belongs_to :landlord, class_name: "User"
   belongs_to :district
   belongs_to :city
+
+  delegate :address_display, to: :address
   
   enum type: [:stair, :elevator]
 

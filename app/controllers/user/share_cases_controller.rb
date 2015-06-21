@@ -5,11 +5,14 @@ class User::ShareCasesController < User::BaseController
   respond_to :html
 
   def index
-    @share_case = current_user.share_cases.all
-    respond_with(@share_case)
+    @share_cases = current_user.share_cases.includes(:apartment).all
+    respond_with(@share_cases)
   end
 
   def show
+    @tenant_group = @share_case.tenant_group
+    @pending_list = @tenant_group.user_group_ships.where(state: "pending")
+    @approved_list = @tenant_group.user_group_ships.where(state: "approved")
     respond_with(@share_case)
   end
 
@@ -54,8 +57,8 @@ class User::ShareCasesController < User::BaseController
   # end
 
   def share_case_params
-    params[:share_case].permit(:price, 
+    params[:share_case].permit(:price,
       apartment_attributes: [:description, image_ids: [], address_attributes: [:city_id, :district_id, :street]], 
-      tenant_group_attributes: [:title, :group_size, :organizer_id])
+      tenant_group_attributes: [:title, :group_size, :user_id])
   end
 end

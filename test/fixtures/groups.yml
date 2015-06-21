@@ -3,7 +3,6 @@
 # Table name: groups
 #
 #  id             :integer          not null, primary key
-#  organizer_id   :integer
 #  group_size     :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

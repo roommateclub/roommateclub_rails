@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     get 'base/index', path: "", as: :dashboard
     resource :profile, except: [:destroy]
     resources :share_cases
-    resource :tenant_group, except: [:new, :create]
+    resources :tenant_groups, except: [:new] do 
+      post "/tenant_groups/ask_to_join_group", as: "ask_to_join", on: :member
+    end
     # resources :rent_cases
     # resources :groups
     resources :apartments do

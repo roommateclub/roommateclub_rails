@@ -4,7 +4,6 @@
 #
 #  id             :integer          not null, primary key
 #  title          :string
-#  organizer_id   :integer
 #  share_case_id  :integer
 #  group_size     :integer
 #  description    :text

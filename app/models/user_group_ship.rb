@@ -10,11 +10,14 @@
 #  updated_at     :datetime         not null
 #  message        :text
 #  groupable_type :string
+#  is_organizer   :boolean
 #
 
 class UserGroupShip < ActiveRecord::Base
   belongs_to :user
   belongs_to :groupable, polymorphic: true
+
+  validates_uniqueness_of :user_id, scope: :groupable_id
   
 
   include Workflow

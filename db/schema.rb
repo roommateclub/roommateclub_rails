@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616135631) do
+ActiveRecord::Schema.define(version: 20150621082723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20150616135631) do
   add_index "districts", ["city_id"], name: "index_districts_on_city_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.integer  "organizer_id"
     t.integer  "group_size"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -82,8 +81,6 @@ ActiveRecord::Schema.define(version: 20150616135631) do
     t.text     "description"
     t.string   "workflow_state"
   end
-
-  add_index "groups", ["organizer_id"], name: "index_groups_on_organizer_id", using: :btree
 
   create_table "pins", force: :cascade do |t|
     t.integer "rent_case_id"
@@ -133,7 +130,6 @@ ActiveRecord::Schema.define(version: 20150616135631) do
 
   create_table "tenant_groups", force: :cascade do |t|
     t.string   "title"
-    t.integer  "organizer_id"
     t.integer  "share_case_id"
     t.integer  "group_size"
     t.text     "description"
@@ -142,7 +138,6 @@ ActiveRecord::Schema.define(version: 20150616135631) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "tenant_groups", ["organizer_id"], name: "index_tenant_groups_on_organizer_id", using: :btree
   add_index "tenant_groups", ["share_case_id"], name: "index_tenant_groups_on_share_case_id", using: :btree
 
   create_table "user_group_ships", force: :cascade do |t|
@@ -153,6 +148,7 @@ ActiveRecord::Schema.define(version: 20150616135631) do
     t.datetime "updated_at",                   null: false
     t.text     "message"
     t.string   "groupable_type"
+    t.boolean  "is_organizer"
   end
 
   add_index "user_group_ships", ["groupable_id"], name: "index_user_group_ships_on_groupable_id", using: :btree

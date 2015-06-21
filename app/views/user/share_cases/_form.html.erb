@@ -27,9 +27,9 @@
 <% end %>
 
 <%= f.simple_fields_for :tenant_group, @tenant_group do |g| %>
+  <%= g.hidden_field :user_id, value: current_user.id %>
   <%= g.input :title, label: "分租標題" %>
   <%= g.input :group_size, label: "徵求室友人數" %>
-  <%= g.hidden_field :organizer_id, value: current_user.id %>
 <% end %>
   
 <%= f.input :price, label: "每月價格($新台幣)" %>

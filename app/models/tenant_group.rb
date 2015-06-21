@@ -4,7 +4,6 @@
 #
 #  id             :integer          not null, primary key
 #  title          :string
-#  organizer_id   :integer
 #  share_case_id  :integer
 #  group_size     :integer
 #  description    :text
@@ -18,9 +17,10 @@ class TenantGroup < ActiveRecord::Base
 
   has_many :user_group_ships, as: :groupable
   has_many :users, through: :user_group_ships, as: :groupable
-  has_one :share_case
+  belongs_to :share_case
   belongs_to :organizer, class_name: :User
-  # after_create :create_organizer_user_group_ship, if: Proc.new {|group| group.rent_case.type == "TenantRentCase"}
+  attr_accessor :user_id
+  after_create :create_organizer_user_group_ship
 
   workflow do
     state :pending do
@@ -50,6 +50,6 @@ class TenantGroup < ActiveRecord::Base
   end
 
   def create_organizer_user_group_ship
-    self.user_group_ships.create(user: organizer, state: "approved")
+    self.user_group_ships.create(user_id: user_id, state: "approved", is_organizer: true)
   end
 end

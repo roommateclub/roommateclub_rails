@@ -10,6 +10,7 @@
 #  updated_at     :datetime         not null
 #  message        :text
 #  groupable_type :string
+#  is_organizer   :boolean
 #
 
 require 'test_helper'

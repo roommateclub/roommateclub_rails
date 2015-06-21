@@ -10,6 +10,7 @@
 #  updated_at     :datetime         not null
 #  message        :text
 #  groupable_type :string
+#  is_organizer   :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

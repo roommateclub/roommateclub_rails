@@ -8,14 +8,34 @@
     San Francisco, CA 94107<br>
     <abbr title="Phone">P:</abbr> (123) 456-7890
   </address>
+  <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add_pin_modal">要求加入</a>
 </div>
+
 <h1>照片:</h1>
 <div class="row">
-  <div class="col-xs-6 col-md-3">
   <% @share_case.apartment.images.each do |image| %>
-    <a href="#" class="thumbnail">
+  <div class="col-xs-6 col-md-3 thumbnail">
     <%= image_tag(image.file) %>
-    </a>
-  <% end %>
   </div>
+  <% end %>
 </div>
+
+<div class="modal fade" id="add_pin_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">要求加入公寓</h4>
+        </div>
+        <div class="modal-body">
+        <%= simple_form_for(@user_group_ship, url: ask_to_join_user_tenant_group_path(@tenant_group), method: :POST) do |f| %>
+          <%= f.input :message %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, "送出" %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
