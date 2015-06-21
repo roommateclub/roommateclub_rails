@@ -18,4 +18,8 @@ class ShareCase < ActiveRecord::Base
   has_one :tenant_group
 
   accepts_nested_attributes_for :apartment, :tenant_group
+
+  def can_ask_to_join?(user)
+    true if tenant_group.user_group_ships.find_by(user: user).nil?
+  end
 end

@@ -42,7 +42,7 @@ class UserGroupShip < ActiveRecord::Base
   end
 
   def activate_group
-    group.activate! if group.has_enough_roommates?
+    groupable.activate! if groupable.has_enough_roommates?
   end
 
   def reject

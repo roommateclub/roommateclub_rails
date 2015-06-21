@@ -7,6 +7,7 @@
     <li>名稱:<%= user.user.username %></li>
   <% end %>
   </div>
+  <% if current_user.can_approve_join_request?(@tenant_group) %> 
   <div class="col-sm-6">
     等待審核名單
     <ul>
@@ -14,19 +15,14 @@
       <li>名稱:<%= user_group_ship.user.username %></li>
       <li>訊息:<%= truncate(user_group_ship.message) %></li>
       <li>狀態:<%= user_group_ship.state %></li>
-      <% if current_user.can_approve_join_request?(@tenant_group) %> 
-        <%= simple_form_for(user_group_ship, url: user_update_user_group_ship_path(user_group_ship)) do |f| %>
-          <%= f.button :button, value: "approve" do  %>
-            同意
-          <% end %>
-          <%= f.button :button, value: "reject" do  %>
-            拒絕
-          <% end %>
-        <% end %>
+      <%= simple_form_for(user_group_ship, url: user_update_user_group_ship_path(user_group_ship)) do |f| %>
+        <%= f.button :button, "同意", value: "approve" %>
+        <%= f.button :button, "拒絕", value: "reject" %>
       <% end %>
     <% end %>
     </ul>
   </div>
+  <% end %>
 </div>
 
 <%= link_to 'Edit', edit_user_share_case_path(@share_case) %> |

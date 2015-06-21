@@ -18,7 +18,6 @@ class TenantGroup < ActiveRecord::Base
   has_many :user_group_ships, as: :groupable
   has_many :users, through: :user_group_ships, as: :groupable
   belongs_to :share_case
-  belongs_to :organizer, class_name: :User
   attr_accessor :user_id
   after_create :create_organizer_user_group_ship
 
@@ -36,6 +35,10 @@ class TenantGroup < ActiveRecord::Base
     end
   end
 # workflow events end
+
+  def organizer
+    user_group_ships.find_by(is_organizer: true).user
+  end
 
   def joined_roommates(option={})
     if option[:include_organizer].present? 

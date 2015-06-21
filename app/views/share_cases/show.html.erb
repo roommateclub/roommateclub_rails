@@ -8,19 +8,9 @@
     San Francisco, CA 94107<br>
     <abbr title="Phone">P:</abbr> (123) 456-7890
   </address>
+  <% if @share_case.can_ask_to_join?(current_user) %>
   <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add_pin_modal">要求加入</a>
-</div>
-
-<h1>照片:</h1>
-<div class="row">
-  <% @share_case.apartment.images.each do |image| %>
-  <div class="col-xs-6 col-md-3 thumbnail">
-    <%= image_tag(image.file) %>
-  </div>
-  <% end %>
-</div>
-
-<div class="modal fade" id="add_pin_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="add_pin_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -39,3 +29,13 @@
       </div>
     </div>
   </div>
+<% end %>
+</div>
+<h1>照片:</h1>
+<div class="row">
+  <% @share_case.apartment.images.each do |image| %>
+  <div class="col-xs-6 col-md-3 thumbnail">
+    <%= image_tag(image.file) %>
+  </div>
+  <% end %>
+</div>

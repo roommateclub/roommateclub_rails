@@ -16,6 +16,7 @@ class User::TenantGroupsController < User::BaseController
     @user_group_ship = @group.user_group_ships.build(user_group_ship_params)
     if @user_group_ship.save
       @user_group_ship.update(user: current_user)
+      binding.remote_pry
       flash[:notice] = "success!"
       redirect_to share_case_path(@share_case)
     else
