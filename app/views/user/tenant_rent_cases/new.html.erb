@@ -1,7 +1,0 @@
-<h1 class="page-title">張貼合租公寓資訊</h1>
-
-<%= simple_form_for(@tenant_rent_case, url: user_tenant_rent_cases_path, wrapper: :horizontal_form, html:{class: "form-horizontal"}) do |f| %>
-  <%= render 'form', f: f, apartment: @apartment, groups: @groups %>
-  <hr>
-  <%= f.button :submit, "張貼", class: "btn btn-primary pull-right btn-lg" %>
-<% end %>

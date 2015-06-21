@@ -2,18 +2,23 @@
 #
 # Table name: user_group_ships
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  group_id   :integer
-#  state      :string           default("0")
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  message    :text
+#  id             :integer          not null, primary key
+#  user_id        :integer
+#  groupable_id   :integer
+#  state          :string           default("0")
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  message        :text
+#  groupable_type :string
+#  is_organizer   :boolean
 #
 
 class UserGroupShip < ActiveRecord::Base
   belongs_to :user
-  belongs_to :group
+  belongs_to :groupable, polymorphic: true
+
+  validates_uniqueness_of :user_id, scope: :groupable_id
+  
 
   include Workflow
   workflow_column :state
@@ -37,7 +42,7 @@ class UserGroupShip < ActiveRecord::Base
   end
 
   def activate_group
-    group.activate! if group.has_enough_roommates?
+    groupable.activate! if groupable.has_enough_roommates?
   end
 
   def reject

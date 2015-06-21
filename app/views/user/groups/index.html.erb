@@ -1,5 +1,5 @@
 <h3>我發起的合租</h3>
-<%= link_to("發起分租", new_user_tenant_rent_case_path, class: "btn btn-info") %>
+<%= link_to("發起分租", new_user_share_case_path, class: "btn btn-info") %>
 <table class="table">
   <thead>
     <tr>
@@ -12,7 +12,7 @@
   <% @own_groups.each do |group| %>
     <tr>
       <td><%= link_to(group.name, user_group_path(group)) %></td>
-      <td><%= truncate(group.discription) %></td>
+      <td><%= truncate(group.description) %></td>
       <td><%= group.group_size %></td>
     </tr> 
   <% end %>
@@ -32,7 +32,7 @@
   <% @groups.each do |group| %>
     <tr>
       <td><%= link_to(group.name, user_group_path(group)) %></td>
-      <td><%= truncate(group.discription) %></td>
+      <td><%= truncate(group.description) %></td>
       <td><%= group.group_size %></td>
     </tr> 
   <% end %>

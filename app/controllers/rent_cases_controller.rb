@@ -7,13 +7,9 @@ class RentCasesController < ApplicationController
   end
 
   def show
-    @rent_case = RentCase.find(params[:id])
-    if @rent_case.type == "LandlordRentCase"
-      @groups = @rent_case.groups
-      render template: "rent_cases/landlord_case"
-    else
-      @group = @rent_case.group
-      render template: "rent_cases/tenant_case"
-    end
+    @rent_case = RentCase.includes(:apartment).find(params[:id])
+    @groups = @rent_case.groups
+    @user_groups = current_user.groups
+    @pin = @rent_case.pins.build
   end
 end

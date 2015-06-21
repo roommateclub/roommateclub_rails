@@ -21,15 +21,15 @@
   <div class="form-group">
     <label for="" class="col-sm-2 control-label">公寓介紹</label>
     <div class="col-sm-10">
-      <%= a.input :discription, label: false, wrapper: false %>
+      <%= a.input :description, label: false, wrapper: false %>
     </div>
   </div>
 <% end %>
 
-<%= f.simple_fields_for :group, @group do |g| %>
-  <%= g.input :name, label: "合租名稱" %>
+<%= f.simple_fields_for :tenant_group, @tenant_group do |g| %>
+  <%= g.hidden_field :user_id, value: current_user.id %>
+  <%= g.input :title, label: "分租標題" %>
   <%= g.input :group_size, label: "徵求室友人數" %>
-  <%= g.hidden_field :organizer_id, value: current_user.id %>
 <% end %>
   
 <%= f.input :price, label: "每月價格($新台幣)" %>

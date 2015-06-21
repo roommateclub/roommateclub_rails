@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: share_cases
+#
+#  id           :integer          not null, primary key
+#  apartment_id :integer
+#  user_id      :integer
+#  price        :integer
+#  move_in_date :datetime
+#  description  :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  apartment_id: 1
+  user_id: 1
+  price: 1
+  move_in_date: 2015-06-10 01:10:56
+  discription: MyText
+
+two:
+  apartment_id: 1
+  user_id: 1
+  price: 1
+  move_in_date: 2015-06-10 01:10:56
+  discription: MyText

@@ -1,0 +1,29 @@
+<h1>Listing Rent Cases</h1>
+<% if @share_cases.present? %>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>地址</th>
+      <th>敘述</th>
+      <th>價格</th>
+      <th></th>
+    </tr>
+    <% @share_cases.each_with_index do |share_case, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= share_case.apartment.address_display %></td>
+      <td><%= share_case.description %></td>
+      <td><%= share_case.price %></td>
+      <td><%= link_to("查看", user_share_case_path(share_case)) %></td>
+    </tr>
+    <% end %>
+  </thead>
+
+  <tbody>
+    
+  </tbody>
+</table>
+<% else %>
+<p>還沒有任何出租資料喔!</p>
+<% end %>

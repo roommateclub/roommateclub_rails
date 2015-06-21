@@ -4,7 +4,7 @@
 #
 #  id                 :integer          not null, primary key
 #  landlord_id        :integer
-#  discription        :text
+#  description        :text
 #  public_room_amount :integer
 #  balcony_amount     :integer
 #  kitchen            :boolean

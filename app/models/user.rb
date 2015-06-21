@@ -25,23 +25,32 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
 
   has_one :profile
+  has_many :tenant_groups, foreign_key: :organizer_id
   delegate :nickname, to: :profile
   has_many :apartments, foreign_key: :landlord_id
-  has_many :tenant_rent_cases, foreign_key: :owner_id
-  has_many :landlord_rent_cases, foreign_key: :owner_id
+  has_many :share_cases
+  has_many :rent_cases
   has_many :user_group_ships
-  has_many :groups, through: :user_group_ships
+  has_many :groups, through: :user_group_ships, :source => :groupable, source_type: :Group
 
   validates_presence_of :email, :username, :password, :password_confirmation
 
   attr_accessor :password_confirmation
 
+  def can_create_group?
+    true if current_group_size < 3
+  end
+
   def can_join?(group)
-    true if user_group_ships.find_by(group: group).nil? && self != group.organizer && !group.has_enough_roommates?
+    true if user_group_ships.find_by(groupable_id: group.id).nil? && self != group.organizer && !group.has_enough_roommates?
   end
 
   def can_approve_join_request?(group)
     true if self == group.organizer
+  end
+
+  def current_group_size
+    groups.size
   end
 
 end

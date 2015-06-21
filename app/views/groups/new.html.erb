@@ -1,6 +1,6 @@
-<%= simple_form_for(@group, url: rent_case_groups_path(@rent_case)) do |f| %>
+<%= simple_form_for(@group, url: groups_path) do |f| %>
   <%= f.input :name %>
-  <%= f.input :discription %>
+  <%= f.input :description %>
   <%= f.button :submit, "建立 Group", class: "btn" %>
 <% end %>
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421142746) do
+ActiveRecord::Schema.define(version: 20150621082723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150421142746) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "landlord_id"
-    t.text     "discription"
+    t.text     "description"
     t.integer  "public_room_amount"
     t.integer  "balcony_amount"
     t.boolean  "kitchen"
@@ -74,18 +74,21 @@ ActiveRecord::Schema.define(version: 20150421142746) do
   add_index "districts", ["city_id"], name: "index_districts_on_city_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.integer  "rent_case_id"
-    t.integer  "organizer_id"
     t.integer  "group_size"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "name"
-    t.text     "discription"
-    t.string   "state"
+    t.text     "description"
+    t.string   "workflow_state"
   end
 
-  add_index "groups", ["organizer_id"], name: "index_groups_on_organizer_id", using: :btree
-  add_index "groups", ["rent_case_id"], name: "index_groups_on_rent_case_id", using: :btree
+  create_table "pins", force: :cascade do |t|
+    t.integer "rent_case_id"
+    t.integer "group_id"
+  end
+
+  add_index "pins", ["group_id"], name: "index_pins_on_group_id", using: :btree
+  add_index "pins", ["rent_case_id"], name: "index_pins_on_rent_case_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.string   "nickname"
@@ -100,29 +103,55 @@ ActiveRecord::Schema.define(version: 20150421142746) do
 
   create_table "rent_cases", force: :cascade do |t|
     t.integer  "apartment_id"
-    t.integer  "owner_id"
+    t.integer  "user_id"
     t.integer  "price"
     t.datetime "move_in_date"
-    t.text     "discription"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.text     "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "state"
-    t.string   "type",         limit: 25
   end
 
   add_index "rent_cases", ["apartment_id"], name: "index_rent_cases_on_apartment_id", using: :btree
-  add_index "rent_cases", ["owner_id"], name: "index_rent_cases_on_owner_id", using: :btree
+  add_index "rent_cases", ["user_id"], name: "index_rent_cases_on_user_id", using: :btree
+
+  create_table "share_cases", force: :cascade do |t|
+    t.integer  "apartment_id"
+    t.integer  "user_id"
+    t.integer  "price"
+    t.datetime "move_in_date"
+    t.text     "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "share_cases", ["apartment_id"], name: "index_share_cases_on_apartment_id", using: :btree
+  add_index "share_cases", ["user_id"], name: "index_share_cases_on_user_id", using: :btree
+
+  create_table "tenant_groups", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "share_case_id"
+    t.integer  "group_size"
+    t.text     "description"
+    t.string   "workflow_state"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "tenant_groups", ["share_case_id"], name: "index_tenant_groups_on_share_case_id", using: :btree
 
   create_table "user_group_ships", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "group_id"
-    t.string   "state",      default: "0"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "groupable_id"
+    t.string   "state",          default: "0"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.text     "message"
+    t.string   "groupable_type"
+    t.boolean  "is_organizer"
   end
 
-  add_index "user_group_ships", ["group_id"], name: "index_user_group_ships_on_group_id", using: :btree
+  add_index "user_group_ships", ["groupable_id"], name: "index_user_group_ships_on_groupable_id", using: :btree
   add_index "user_group_ships", ["user_id"], name: "index_user_group_ships_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h1>月租:<%= @share_case.price %></h1>
+  <h1>介紹:</h1>
+  <p class="lead"><%= @share_case.apartment.description %></p>
+  <address>
+    <strong>Twitter, Inc.</strong><br>
+    795 Folsom Ave, Suite 600<br>
+    San Francisco, CA 94107<br>
+    <abbr title="Phone">P:</abbr> (123) 456-7890
+  </address>
+  <% if @share_case.can_ask_to_join?(current_user) %>
+  <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add_pin_modal">要求加入</a>
+  <div class="modal fade" id="add_pin_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">要求加入公寓</h4>
+        </div>
+        <div class="modal-body">
+        <%= simple_form_for(@user_group_ship, url: ask_to_join_user_tenant_group_path(@tenant_group), method: :POST) do |f| %>
+          <%= f.input :message %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, "送出" %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+<h1>照片:</h1>
+<div class="row">
+  <% @share_case.apartment.images.each do |image| %>
+  <div class="col-xs-6 col-md-3 thumbnail">
+    <%= image_tag(image.file) %>
+  </div>
+  <% end %>
+</div>

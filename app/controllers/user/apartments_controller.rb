@@ -59,7 +59,7 @@ class User::ApartmentsController < User::BaseController
   end
 
   def apartment_params
-    params[:apartment].permit(:discription, :is_landlord, image_ids: [],
+    params[:apartment].permit(:description, :is_landlord, image_ids: [],
       address_attributes: [:city_id, :district_id, :street])
   end
 end

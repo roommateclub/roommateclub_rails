@@ -26,6 +26,3 @@
     <div id="map_canvas" style="width:100%; height: 500px"></div>
   </div>
 </div>
-<% if @rent_case.can_create_group?(current_user) %> 
-<%= link_to("建立 Group", new_rent_case_group_path(@rent_case)) %>
-<% end %>

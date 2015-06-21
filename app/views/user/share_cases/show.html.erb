@@ -1,0 +1,29 @@
+<h1>合租標題:<%= @tenant_group.title %></h1>
+<%= simple_format(@tenant_group.description) %>
+<div class="row">
+  <div class="col-sm-6">
+    已加入名單
+  <% @approved_list.each do |user|  %>
+    <li>名稱:<%= user.user.username %></li>
+  <% end %>
+  </div>
+  <% if current_user.can_approve_join_request?(@tenant_group) %> 
+  <div class="col-sm-6">
+    等待審核名單
+    <ul>
+    <% @pending_list.each do |user_group_ship| %>
+      <li>名稱:<%= user_group_ship.user.username %></li>
+      <li>訊息:<%= truncate(user_group_ship.message) %></li>
+      <li>狀態:<%= user_group_ship.state %></li>
+      <%= simple_form_for(user_group_ship, url: user_update_user_group_ship_path(user_group_ship)) do |f| %>
+        <%= f.button :button, "同意", value: "approve" %>
+        <%= f.button :button, "拒絕", value: "reject" %>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+</div>
+
+<%= link_to 'Edit', edit_user_share_case_path(@share_case) %> |
+<%= link_to 'Back', user_share_cases_path %>

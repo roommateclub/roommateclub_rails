@@ -4,7 +4,7 @@
 #
 #  id                 :integer          not null, primary key
 #  landlord_id        :integer
-#  discription        :text
+#  description        :text
 #  public_room_amount :integer
 #  balcony_amount     :integer
 #  kitchen            :boolean
@@ -18,10 +18,13 @@
 class Apartment < ActiveRecord::Base
   has_one :address
   has_many :rent_cases
+  has_many :share_cases
   has_many :images, as: :viewable, dependent: :destroy
   belongs_to :landlord, class_name: "User"
   belongs_to :district
   belongs_to :city
+
+  delegate :address_display, to: :address
   
   enum type: [:stair, :elevator]
 
